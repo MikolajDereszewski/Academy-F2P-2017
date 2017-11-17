@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "F2P_Project", "F2P_Project.csproj", "{A08A8650-88F6-7D94-9047-AF231E4A9C3B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A08A8650-88F6-7D94-9047-AF231E4A9C3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A08A8650-88F6-7D94-9047-AF231E4A9C3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A08A8650-88F6-7D94-9047-AF231E4A9C3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A08A8650-88F6-7D94-9047-AF231E4A9C3B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
