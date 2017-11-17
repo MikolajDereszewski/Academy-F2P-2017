@@ -85,7 +85,8 @@ namespace GameClasses
 
         public void Initialize()
         {
-            _length = UnityEngine.Random.Range(25, 50) * DifficultyManager.GetPlatformLengthMultiplier();
+            Vector2 rand = GameBehaviour.PlatformSize;
+            _length = UnityEngine.Random.Range(rand.x, rand.y) * DifficultyManager.GetPlatformLengthMultiplier();
             _sprite = GameSkin.Platform;
         }
     }

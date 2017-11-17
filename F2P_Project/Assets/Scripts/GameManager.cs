@@ -32,10 +32,12 @@ public class GameManager : MonoBehaviour {
         Vector3 spawnPosition = _currentActivePlatform.GetEndPoint();
         var newPlatform = Instantiate(_platformPrefab, spawnPosition, Quaternion.identity);
         newPlatform.Initialize();
+        return newPlatform;
     }
 
-    private Vector3 GetRandomGap()
+    private float GetRandomGap()
     {
-
+        Vector2 rand = GameBehaviour.GapSize;
+        return UnityEngine.Random.Range(rand.x, rand.y);
     }
 }
