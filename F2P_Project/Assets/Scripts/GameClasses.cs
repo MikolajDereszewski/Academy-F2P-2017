@@ -32,7 +32,7 @@ namespace GameClasses
 
         public static float GetGameSpeed()
         {
-            return 1 + _level * 0.2f;
+            return (1 + _level * 0.2f) * GameBehaviour.GameSpeed;
         }
 
         public static float GetGameTime(float currentTime)
@@ -49,6 +49,7 @@ namespace GameClasses
         {
             _startTime = currentTime;
             _levelStartTime = currentTime;
+            _level = 1;
         }
 
         public static void OnIncreaseLevel(float currentTime)
@@ -87,7 +88,7 @@ namespace GameClasses
         {
             Vector2 rand = GameBehaviour.PlatformSize;
             _length = UnityEngine.Random.Range(rand.x, rand.y) * DifficultyManager.GetPlatformLengthMultiplier();
-            _sprite = GameSkin.Platform;
+            //_sprite = GameSkin.Platform;
         }
     }
 }

@@ -12,20 +12,21 @@ public class Platform : MonoBehaviour {
 
     public void Initialize()
     {
+        _properties = new PlatformProperties();
         _properties.Initialize();
         transform.localScale = new Vector3(_properties.Length, transform.localScale.y, transform.localScale.z);
     }
 
     private void Update()
     {
-        transform.Translate(Vector3.left * DifficultyManager.GetGameSpeed());
+        transform.Translate(Vector3.left * DifficultyManager.GetGameSpeed() * Time.deltaTime);
         if (!CheckIfVisible())
             Destroy(gameObject);
     }
 
     private bool CheckIfVisible()
     {
-        return (_renderer.isVisible && transform.position.x < 0);
+        return (_renderer.isVisible || GetEndPoint().x > Camera.main.ViewportToWorldPoint(Vector3.zero).x);
     }
 
     public Vector3 GetEndPoint()

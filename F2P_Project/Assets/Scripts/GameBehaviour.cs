@@ -1,17 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameBehaviour : MonoBehaviour {
 
     public static GameBehaviour GameBehaviourScript { get { return _thisObject; } }
-    public static Vector2 GapSize { get { return _gapSize; } }
-    public static Vector2 PlatformSize { get { return _platformSize; } }
+    public static Vector2 GapSize { get { return GameBehaviourScript._gapSize; } }
+    public static Vector2 PlatformSize { get { return GameBehaviourScript._platformSize; } }
+    public static float GameSpeed { get { return GameBehaviourScript._gameSpeed; } }
 
     [SerializeField]
-    private static Vector2 _gapSize;
+    private Vector2 _gapSize;
     [SerializeField]
-    private static Vector2 _platformSize;
+    private Vector2 _platformSize;
+    [SerializeField]
+    private float _gameSpeed;
 
     private static GameBehaviour _thisObject;
 
