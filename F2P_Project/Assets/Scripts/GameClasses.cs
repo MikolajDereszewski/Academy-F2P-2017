@@ -76,6 +76,46 @@ namespace GameClasses
             _tree = tree;
         }
     }
+
+    public enum TapType
+    {
+        None = 0,
+        Left = 1,
+        Right = 2
+    }
+
+    public static class InputManager
+    {
+        public static TapType GetPlayerInput()
+        {
+            if ((Input.touchCount > 0 && (Input.GetTouch(0).phase == TouchPhase.Began || Input.GetTouch(0).phase == TouchPhase.Stationary)) || Input.GetMouseButton(0))
+            {
+                Vector2 position = (Input.touchCount > 0) ? Input.GetTouch(0).position : new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+                if (position.y >= Screen.height / 2f)
+                    return TapType.None;
+                else return (position.x >= Screen.width / 2f) ? TapType.Right : TapType.Left;
+            }
+            else return TapType.None;
+        }
+
+        public static bool GetRequestedPlayerInput(TapType request)
+        {
+            if (Input.touchCount == 0)
+                return (GetPlayerInput() == request);
+            for(int i = 0; i < Input.touchCount; i++)
+            {
+                if (Input.GetTouch(i).phase == TouchPhase.Began || Input.GetTouch(i).phase == TouchPhase.Stationary)
+                {
+                    Vector2 position = (Input.touchCount > 0) ? Input.GetTouch(0).position : new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+                    if (position.y >= Screen.height / 2f)
+                        continue;
+                    if (((position.x >= Screen.width / 2f) ? TapType.Right : TapType.Left) == request)
+                        return true;
+                }
+            }
+            return false;
+        }
+    }
     
     public class PlatformProperties
     {

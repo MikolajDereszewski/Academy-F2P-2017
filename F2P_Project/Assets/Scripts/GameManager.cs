@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
 
     private GameState _gameState = GameState.BeforeStart;
     
+    [SerializeField]
     private Platform _currentActivePlatform;
     private float _currentActiveGap;
 
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour {
 
     private void InitializeGame()
     {
+        _currentActivePlatform.Initialize(_currentActivePlatform.transform.position, false);
         IncreaseLevel += DifficultyManager.OnIncreaseLevel;
         DifficultyManager.SetStartTime(Time.time);
         _gameState = GameState.Running;
@@ -37,9 +39,8 @@ public class GameManager : MonoBehaviour {
         _currentActiveGap = GetRandomGap();
         Vector3 endPoint = GetCurrentPlatformEndPoint();
         var newPlatform = Instantiate(_platformPrefab, endPoint, Quaternion.identity);
-        newPlatform.Initialize();
-        Vector3 spawnPosition = Vector3.right * (_currentActiveGap + endPoint.x + newPlatform.Properties.Length/2f) + Vector3.up * GetPlatformSpawnY();
-        newPlatform.transform.position = spawnPosition;
+        Vector3 spawnPosition = Vector3.right * (_currentActiveGap + endPoint.x) + Vector3.up * GetPlatformSpawnY();
+        newPlatform.Initialize(spawnPosition);
         return newPlatform;
     }
 
