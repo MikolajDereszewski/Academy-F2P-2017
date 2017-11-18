@@ -17,32 +17,33 @@ public class InterfaceRun : MonoBehaviour
     private float timeDeltaTime = 0;
     private float screenWidth;
     private float converter;
-
-    [SerializeField]
-    private float _mapModifierDistance = 1f;
+    
     [SerializeField]
     private float _auraTakerMultiplier = 1f;
+    [SerializeField]
+    private float _totalDistance = 8f;
+    [SerializeField]
+    private int _levelCount = 6;
 
     private static InterfaceRun _thisScript;
 
     void Start()
     {
+        Debug.Log(headImage.transform.position);
         _thisScript = this;
 
         slider.minValue = 0;
         slider.maxValue = 100;
         slider.wholeNumbers = false;
         slider.value = 100;
-
-        headImage.transform.position = new Vector2(2, -8);
+        
         screenWidth = Screen.width;
         converter = screenWidth / MAP_DISTANCE;
-        headImage.transform.position = new Vector2(DifficultyManager.GetGameTime(Time.time) * converter, -8);
     }
 
     void Update()
     {
-        headImage.transform.position += new Vector3(DifficultyManager.GetGameSpeed() * _mapModifierDistance * Time.deltaTime, 0);
+        headImage.transform.position += new Vector3(((_totalDistance / (float)_levelCount) / GameBehaviour.GetCurrentLevelInfo().Time) * Time.deltaTime, 0);
 
         if (!isAura)
         {

@@ -2,13 +2,16 @@
 using System;
 using GameClasses;
 
-public class Hookshot : MonoBehaviour {
+public class Hookshot : MonoBehaviour
+{
 
     public event Action HitTree;
     public event Action HitNothing;
 
     [SerializeField]
     private SpriteRenderer _renderer = null;
+    [SerializeField]
+    private LineRenderer _lineRenderer = null;
 
     public float HookshotDistance = 0f;
 
@@ -21,7 +24,11 @@ public class Hookshot : MonoBehaviour {
             HitNothing();
         if (HookshotDistance != 0f)
             transform.position = Vector3.left * DifficultyManager.GetGameSpeed() * Time.deltaTime + new Vector3(transform.position.x, _lockedYPosition, transform.position.z);
-            
+        if(transform.position != transform.parent.position)
+        {
+            _lineRenderer.SetPosition(0, transform.position);
+            _lineRenderer.SetPosition(1, transform.parent.position);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -37,6 +44,8 @@ public class Hookshot : MonoBehaviour {
 
     public void ResetPosition(Vector3 position)
     {
+        Vector3[] resetVectors = { Vector3.zero, Vector3.zero };
+        _lineRenderer.SetPositions(resetVectors);
         transform.position = position;
         HookshotDistance = 0f;
         _lockedYPosition = 0f;

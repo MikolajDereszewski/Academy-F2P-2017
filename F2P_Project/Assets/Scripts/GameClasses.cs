@@ -22,6 +22,8 @@ namespace GameClasses
 
     public static class DifficultyManager
     {
+        public static int CurrentLevel { get { return _level; } }
+
         private static float _startTime;
         private static float _levelStartTime;
         private static int _level;
@@ -33,7 +35,7 @@ namespace GameClasses
 
         public static float GetGameSpeed()
         {
-            return (1 + _level * 0.2f) * GameBehaviour.GameSpeed;
+            return (1 + _level * 0.5f) * GameBehaviour.GameSpeed;
         }
 
         public static float GetGameTime(float currentTime)
@@ -50,11 +52,12 @@ namespace GameClasses
         {
             _startTime = currentTime;
             _levelStartTime = currentTime;
-            _level = 1;
+            _level = 0;
         }
 
         public static void OnIncreaseLevel(float currentTime)
         {
+            Debug.Log("LEVEL INCREASED!");
             _level++;
             _levelStartTime = currentTime;
         }

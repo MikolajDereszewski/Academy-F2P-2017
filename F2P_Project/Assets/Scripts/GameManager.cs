@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour {
     {
         if (Camera.main.WorldToViewportPoint(GetCurrentPlatformEndPoint()).x < 1)
             _currentActivePlatform = CreatePlatform();
+        if (DifficultyManager.GetLevelTime(Time.time) >= GameBehaviour.GetCurrentLevelInfo().Time && IncreaseLevel != null)
+            IncreaseLevel(Time.time);
     }
 
     private void InitializeGame()
@@ -56,7 +58,9 @@ public class GameManager : MonoBehaviour {
     {
         Vector2 rand = GameBehaviour.GapSize;
         float gap = UnityEngine.Random.Range(rand.x, rand.y);
-        int treeCount = (int)(gap / 6f);
+        if (!GameBehaviour.GetCurrentLevelInfo().Trees)
+            return gap;
+        int treeCount = (GameBehaviour.GetCurrentLevelInfo().DoubleTrees) ? (int)(gap / 6f) : ((int)(gap / 6f) >= 2f) ? 2 : 1;
         for (int i = 1; i < treeCount; i++)
         {
             CreateTree(GetCurrentPlatformEndPoint().x + i * (gap / treeCount));

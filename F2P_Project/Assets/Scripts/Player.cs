@@ -29,6 +29,9 @@ public class Player : MonoBehaviour {
     private Vector3 _hookshotMoveVector = Vector3.zero;
     [SerializeField]
     private SpriteRenderer _spriteRenderer1 = null, _spriteRenderer2 = null;
+
+    [SerializeField]
+    private Animator _auraAnimator = null;
     
     private float _speedY = 0f;
     private float _spriteMaskSize;
@@ -50,6 +53,11 @@ public class Player : MonoBehaviour {
         if (!_spriteRenderer1.isVisible && !_spriteRenderer2.isVisible)
             KillPlayer();
         ScalePlayerMask((InputManager.GetRequestedPlayerInput(TapType.Left, true)));
+        if ((InputManager.GetRequestedPlayerInput(TapType.Left, false)))
+        {
+            _auraAnimator.SetTrigger("AuraPopup");
+            //_auraAnimator.ResetTrigger("AuraPopup");
+        }
         if (InputManager.GetRequestedPlayerInput(TapType.Right))
             Jump();
     }
