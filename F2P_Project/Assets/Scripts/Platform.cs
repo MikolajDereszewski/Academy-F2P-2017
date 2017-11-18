@@ -9,6 +9,8 @@ public class Platform : MonoBehaviour {
     [SerializeField]
     private List<ScrollingObject> _obstaclePrefabs = null;
     [SerializeField]
+    private List<ScrollingObject> _collectiblesPrefabs = null;
+    [SerializeField]
     private SpriteRenderer _renderer1, _renderer2;
 
     private PlatformProperties _properties;
@@ -25,6 +27,7 @@ public class Platform : MonoBehaviour {
         transform.position = spawnPosition + Vector3.right * (_properties.Length * 0.5f) * 5f;
         if(createObstacles)
             CreateObstacles();
+        CreateCollectibles();
     }
 
     private void CreateObstacles()
@@ -36,6 +39,15 @@ public class Platform : MonoBehaviour {
             float randomizer = (_properties.Length * 0.5f - (_obstaclePrefabs[index].transform.localScale.x * 0.5f));
             Vector3 spawnPosition = new Vector3(Random.Range(-randomizer, randomizer) + transform.position.x, transform.position.y, _obstaclePrefabs[index].transform.position.z);
             Instantiate(_obstaclePrefabs[index], spawnPosition, Quaternion.identity);
+        }
+    }
+
+    private void CreateCollectibles()
+    {
+        for(int i = 0; i < _properties.Length*2f; i+=2)
+        {
+            Vector3 spawnPosition = transform.position - Vector3.right * (_properties.Length / 2f) * 5f + Vector3.right * i * 2f + Vector3.up;
+            Instantiate(_collectiblesPrefabs[Random.Range(0, _collectiblesPrefabs.Count)], spawnPosition, Quaternion.identity);
         }
     }
 

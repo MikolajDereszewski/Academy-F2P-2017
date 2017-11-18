@@ -589,6 +589,7 @@ GameObject:
   - component: {fileID: 894013587}
   - component: {fileID: 894013586}
   - component: {fileID: 894013589}
+  - component: {fileID: 894013590}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -630,7 +631,7 @@ MonoBehaviour:
     _treesEnabled: 0
     _doubleTreesEnabled: 0
     _gapSize: {x: 3, y: 5}
-    _platformSize: {x: 3, y: 6}
+    _platformSize: {x: 5, y: 9}
   - _name: Easy
     _timeNeeded: 30
     _treesEnabled: 1
@@ -690,6 +691,22 @@ MonoBehaviour:
   headImage: {fileID: 1025932008}
   panelPause: {fileID: 0}
   _auraTakerMultiplier: 2
+--- !u!114 &894013590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 894013585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4db1bafe386190343b4643cbe7c37f2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collectibles:
+  - _type: 0
+    _count: 0
+  - _type: 1
+    _count: 0
 --- !u!1 &907523054
 GameObject:
   m_ObjectHideFlags: 0
@@ -1430,7 +1447,7 @@ GameObject:
   - component: {fileID: 1614371835}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: PLAYER
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2686,7 +2703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4975a6e437fc3b149a8cd508ce5bdd69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  threshold: 0.55
+  threshold: 0.65
   intensity: 2.5
   blurSize: 1
   blurIterations: 4
@@ -2704,7 +2721,7 @@ GameObject:
   - component: {fileID: 2094614410}
   m_Layer: 0
   m_Name: Killzone
-  m_TagString: OBSTACLE
+  m_TagString: KILLZONE
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

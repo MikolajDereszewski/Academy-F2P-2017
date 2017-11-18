@@ -5,10 +5,11 @@ using System;
 
 public class Player : MonoBehaviour
 {
-
     public event Action PlayerDied;
     public event Action PlayerLanded;
     public event Action PlayerExitGround;
+
+    public bool HasMaskOpened { get { return _isMaskOpened; } }
 
     public PlayerState CurrentState { get { return _playerState; } }
 
@@ -205,7 +206,9 @@ public class Player : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.collider.tag == "GROUND")
+        if (collision.collider.tag == "OBSTACLE" && _isMaskOpened)
+            return;
+        else if (collision.collider.tag == "GROUND")
             transform.position = new Vector3(transform.position.x, collision.contacts[0].point.y + transform.localScale.y * 0.5f);
         _playerState = PlayerState.Running;
         _speedY = 0f;
