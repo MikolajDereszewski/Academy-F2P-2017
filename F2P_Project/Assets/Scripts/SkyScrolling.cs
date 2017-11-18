@@ -15,7 +15,7 @@ public class SkyScrolling : MonoBehaviour {
 
     private void Update()
     {
-        Vector3 move = Vector3.left * DifficultyManager.GetGameSpeed() * GetAspect() * Time.deltaTime;
+        Vector3 move = Vector3.left * DifficultyManager.GetGameSpeed() * 0.5f * Time.deltaTime;
         _sky1.position += move;
         _sky2.position += move;
         if (IsOverCameraView())
@@ -24,28 +24,28 @@ public class SkyScrolling : MonoBehaviour {
 
     private void SetSkySize(Transform sky)
     {
-        float scale = GetScreenSize();
+        float scale = GetScreenSize().y;
         sky.localScale = new Vector3(scale, scale, 1f);
     }
 
     private void ResetSky()
     {
-        _sky1.position = new Vector3(GetScreenSize() * (GetAspect() + 0.5f), _sky1.position.y, _sky1.position.z);
-        _sky2.position = _sky1.position + (Vector3.right * GetScreenSize() / GetAspect());
+        _sky1.position = new Vector3(Camera.main.ViewportToWorldPoint(Vector2.zero).x, Camera.main.ViewportToWorldPoint(Vector2.zero).y, _sky1.position.z);
+        _sky2.position = new Vector3(_sky1.position.x + _sky1.localScale.x / GetAspect(), _sky1.position.y, _sky1.position.z);
     }
 
     private bool IsOverCameraView()
     {
-        return (_sky2.position.x <= GetScreenSize() * (GetAspect() + 0.5f));
+        return (_sky2.position.x <= Camera.main.ViewportToWorldPoint(Vector2.zero).x);
     }
 
-    private float GetScreenSize()
+    private Vector2 GetScreenSize()
     {
-        return Camera.main.ViewportToWorldPoint(Vector2.up).y - Camera.main.ViewportToWorldPoint(Vector2.zero).y;
+        return Camera.main.ViewportToWorldPoint(Vector2.one) - Camera.main.ViewportToWorldPoint(Vector2.zero);
     }
 
     private float GetAspect()
     {
-        return (710f / 2048f);
+        return 2048f / 5906f;
     }
 }

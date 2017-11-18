@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour {
     {
         Vector2 rand = GameBehaviour.GapSize;
         float gap = UnityEngine.Random.Range(rand.x, rand.y);
-        int treeCount = (int)(gap / 5f);
+        int treeCount = (int)(gap / 6f);
         for (int i = 1; i < treeCount; i++)
         {
             CreateTree(GetCurrentPlatformEndPoint().x + i * (gap / treeCount));
