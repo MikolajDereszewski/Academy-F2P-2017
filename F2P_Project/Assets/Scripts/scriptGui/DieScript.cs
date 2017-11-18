@@ -11,7 +11,7 @@ public class DieScript : MonoBehaviour {
 
     public Text textScore;
     public Text textBestScore;
-    public Text textOnSlider;                   //TODO SAVE PLAYERPREFS!!!
+    public Text textOnSlider;
     public Text itemSilverMoney;
     public Text itemGoldMoney;
     public Text itemNuts;
@@ -29,22 +29,22 @@ public class DieScript : MonoBehaviour {
         {
             if (score > PlayerPrefs.GetInt(PREF_NAME))
             {
-                textScore.text = "Wynik: " + score;
-                textBestScore.text = "Najlepszy wynik: " + score;
+                textScore.text = "Score: " + score;
+                textBestScore.text = "Best score: " + score;
                 PlayerPrefs.SetInt(BasePrefName.ALL_SCORE, PlayerPrefs.GetInt(BasePrefName.ALL_SCORE) + score);
                 PlayerPrefs.SetInt(BasePrefName.BEST_SCORE, score);
             }
             else
             {
-                textScore.text = "Wynik: " + score;
-                textBestScore.text = "Najlepszy wynik: " + PlayerPrefs.GetInt(PREF_NAME);
+                textScore.text = "Score: " + score;
+                textBestScore.text = "Best score: " + PlayerPrefs.GetInt(PREF_NAME);
                 PlayerPrefs.SetInt(BasePrefName.ALL_SCORE, PlayerPrefs.GetInt(BasePrefName.ALL_SCORE) + score);
             }
         }
         else
         {
-            textBestScore.text = "Najlepszy wynik: " + 0;
-            textScore.text = "Wynik: " + score;
+            textBestScore.text = "Best score: " + 0;
+            textScore.text = "Score: " + score;
             PlayerPrefs.SetInt(BasePrefName.ALL_SCORE, PlayerPrefs.GetInt(BasePrefName.ALL_SCORE) + score);
             PlayerPrefs.SetInt(BasePrefName.BEST_SCORE, score);
         }

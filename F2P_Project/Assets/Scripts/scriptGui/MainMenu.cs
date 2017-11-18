@@ -6,9 +6,6 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    const string NAME_PREF = BasePrefName.BEST_SCORE;
-    const string MONEY = BasePrefName.MONEY;
-
     public Text textScore;
     public Text textMoney;
     public Sprite disabledSound;
@@ -19,15 +16,15 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
-        if (PlayerPrefs.HasKey(NAME_PREF))
-            textScore.text = "Njlepszy wynik: " + PlayerPrefs.GetInt(NAME_PREF);
+        if (PlayerPrefs.HasKey(BasePrefName.BEST_SCORE))
+            textScore.text = "Best score: " + PlayerPrefs.GetInt(BasePrefName.BEST_SCORE);
         else
-            textScore.text = "Njalepszy wynik: " + PlayerPrefs.GetInt(NAME_PREF);
+            textScore.text = "Best score: " + PlayerPrefs.GetInt(BasePrefName.BEST_SCORE);
 
-        if (PlayerPrefs.HasKey(NAME_PREF))
-            textMoney.text = "Pieniądze: " + PlayerPrefs.GetInt(MONEY);
+        if (PlayerPrefs.HasKey(BasePrefName.ALL_SCORE))
+            textMoney.text = "Money: " + PlayerPrefs.GetInt(BasePrefName.ALL_SCORE);
         else
-            textMoney.text = "Pieniądze: " + PlayerPrefs.GetInt(MONEY);
+            textMoney.text = "Money: " + PlayerPrefs.GetInt(BasePrefName.ALL_SCORE);
 
     }
 
