@@ -1489,7 +1489,7 @@ MonoBehaviour:
   _maxMaskSize: 6
   _maskScalingSpeed: 36
   _hookshot: {fileID: 1383822346}
-  _hookshotMoveVector: {x: 25, y: 25, z: 0}
+  _hookshotMoveVector: {x: 15, y: 25, z: 0}
   _spriteRenderer1: {fileID: 1667127262}
   _spriteRenderer2: {fileID: 869405053}
   _auraAnimator: {fileID: 1955606310}

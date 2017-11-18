@@ -132,10 +132,10 @@ MonoBehaviour:
   _specialItems:
   - _prefab: {fileID: 114439778196761240, guid: 9980587d6640e9944b7aae1b33ccd7a1,
       type: 2}
-    _chance: 10
+    _chance: 50
   - _prefab: {fileID: 114488679899282242, guid: 6823fa091c674e84d90bc6fdf43e58da,
       type: 2}
-    _chance: 10
+    _chance: 25
   _spawnRect:
     serializedVersion: 2
     x: -1
