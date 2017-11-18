@@ -7,6 +7,8 @@ public class Platform : MonoBehaviour {
     
     [SerializeField]
     private ScrollingObject _obstaclePrefab = null;
+    [SerializeField]
+    private SpriteRenderer _renderer1, _renderer2;
 
     private PlatformProperties _properties;
 
@@ -14,6 +16,8 @@ public class Platform : MonoBehaviour {
     {
         _properties = new PlatformProperties();
         _properties.Initialize();
+        _renderer1.sprite = _properties.Sprite;
+        _renderer2.sprite = _properties.Sprite;
         transform.localScale = new Vector3(_properties.Length, transform.localScale.y, transform.localScale.z);
         transform.position = spawnPosition + Vector3.right * (_properties.Length * 0.5f);
         if(createObstacles)

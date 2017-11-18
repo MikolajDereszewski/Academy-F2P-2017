@@ -7,12 +7,16 @@ public class Hookshot : MonoBehaviour {
     public event Action HitTree;
     public event Action HitNothing;
 
+    [SerializeField]
+    private SpriteRenderer _renderer = null;
+
     public float HookshotDistance = 0f;
 
     private float _lockedYPosition = 0f;
 
     private void Update()
     {
+        _renderer.enabled = (transform.localPosition != Vector3.zero);
         if (transform.position.y >= Camera.main.ViewportToWorldPoint(Vector3.up).y && HitNothing != null)
             HitNothing();
         if (HookshotDistance != 0f)

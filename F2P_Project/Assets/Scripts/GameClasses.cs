@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace GameClasses
 {
@@ -62,14 +63,14 @@ namespace GameClasses
     public static class GameSkin
     {
         public static Sprite Background { get { return _background; } }
-        public static Sprite Platform { get { return _platform; } }
         public static Sprite Tree { get { return _tree; } }
+        public static List<Sprite> Platform { get { return _platform; } }
 
         private static Sprite _background;
-        private static Sprite _platform;
         private static Sprite _tree;
+        private static List<Sprite> _platform;
 
-        public static void SetGameSkin(Sprite background, Sprite platform, Sprite tree)
+        public static void SetGameSkin(Sprite background, Sprite tree, List<Sprite> platform)
         {
             _background = background;
             _platform = platform;
@@ -120,6 +121,7 @@ namespace GameClasses
     public class PlatformProperties
     {
         public float Length { get { return _length; } }
+        public Sprite Sprite { get { return _sprite; } }
         
         private float _length;
         private Sprite _sprite;
@@ -128,7 +130,7 @@ namespace GameClasses
         {
             Vector2 rand = GameBehaviour.PlatformSize;
             _length = UnityEngine.Random.Range(rand.x, rand.y);
-            //_sprite = GameSkin.Platform;
+            _sprite = GameSkin.Platform[Random.Range(0, GameSkin.Platform.Count)];
         }
     }
 }
