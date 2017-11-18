@@ -6,7 +6,8 @@ using System.Linq;
 public enum CollectibleType
 {
     Coin = 0,
-    Nut = 1
+    Nut = 1,
+    Mana = 2
 }
 
 [System.Serializable]

@@ -22,8 +22,14 @@ public class InGameCollectible : MonoBehaviour
         {
             if (collision.GetComponent<Player>().HasMaskOpened)
                 return;
-            CollectiblesCounter.AddCollectible(_collectible);
-            Instantiate(_afterCollectPrefab, transform.position, Quaternion.identity);
+            if (_collectible.Type == CollectibleType.Mana)
+                InterfaceRun.CollectMana(_collectible.Count);
+            else
+                CollectiblesCounter.AddCollectible(_collectible);
+
+            if(_afterCollectPrefab != null)
+                Instantiate(_afterCollectPrefab, transform.position, Quaternion.identity);
+
             Destroy(gameObject);
         }
     }

@@ -73,6 +73,11 @@ public class InterfaceRun : MonoBehaviour
         _thisScript.slider.value -= 5 * _thisScript._auraTakerMultiplier;
     }
 
+    public static void CollectMana(int value)
+    {
+        _thisScript.slider.value += value;
+    }
+
     public void HidePanelPause()
     {
         if (panelPause.isActiveAndEnabled)
