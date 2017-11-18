@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField]
     private Platform _platformPrefab = null;
+    [SerializeField]
+    private GameObject _treePrefab = null;
 
     private GameState _gameState = GameState.BeforeStart;
     
@@ -44,10 +46,22 @@ public class GameManager : MonoBehaviour {
         return newPlatform;
     }
 
+    private void CreateTree(float positionX)
+    {
+        Vector3 spawnPosition = new Vector3(positionX, _treePrefab.transform.position.y, _treePrefab.transform.position.z);
+        Instantiate(_treePrefab, spawnPosition, Quaternion.identity);
+    }
+
     private float GetRandomGap()
     {
         Vector2 rand = GameBehaviour.GapSize;
-        return UnityEngine.Random.Range(rand.x, rand.y);
+        float gap = UnityEngine.Random.Range(rand.x, rand.y);
+        int treeCount = (int)(gap / 5f);
+        for (int i = 1; i < treeCount; i++)
+        {
+            CreateTree(GetCurrentPlatformEndPoint().x + i * (gap / treeCount));
+        }
+        return gap;
     }
 
     private Vector3 GetCurrentPlatformEndPoint()

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using GameClasses;
 
-public class Obstacle : MonoBehaviour {
+public class ScrollingObject : MonoBehaviour {
     
     [SerializeField]
     private SpriteRenderer _renderer = null;

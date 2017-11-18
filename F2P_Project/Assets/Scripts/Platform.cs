@@ -4,11 +4,9 @@ using GameClasses;
 public class Platform : MonoBehaviour {
 
     public PlatformProperties Properties { get { return _properties; } }
-
+    
     [SerializeField]
-    private SpriteRenderer _renderer = null;
-    [SerializeField]
-    private Obstacle _obstaclePrefab = null;
+    private ScrollingObject _obstaclePrefab = null;
 
     private PlatformProperties _properties;
 
@@ -20,18 +18,6 @@ public class Platform : MonoBehaviour {
         transform.position = spawnPosition + Vector3.right * (_properties.Length * 0.5f);
         if(createObstacles)
             CreateObstacles();
-    }
-
-    private void Update()
-    {
-        transform.Translate(Vector3.left * DifficultyManager.GetGameSpeed() * Time.deltaTime);
-        if (!CheckIfVisible())
-            Destroy(gameObject);
-    }
-
-    private bool CheckIfVisible()
-    {
-        return (_renderer.isVisible || GetEndPoint().x > Camera.main.ViewportToWorldPoint(Vector3.zero).x);
     }
 
     private void CreateObstacles()
