@@ -36,7 +36,14 @@ public class Player : MonoBehaviour {
 
     [SerializeField]
     private Animator _auraAnimator = null;
-    
+    [SerializeField]
+    private Animator _playerAnimator = null;
+    [SerializeField]
+    private Animator _playerSpiritAnimator = null;
+
+    [SerializeField]
+    private AudioSource _hookshotWhoosh = null;
+
     private float _speedY = 0f;
     private float _spriteMaskSize;
 
@@ -77,7 +84,8 @@ public class Player : MonoBehaviour {
     private void ScalePlayerMask(bool opening)
     {
         _isMaskOpened = opening;
-        InterfaceRun.AuraKeyDetection(opening);
+        if(InterfaceRun.ThisScript != null)
+            InterfaceRun.AuraKeyDetection(opening);
         Vector3 scaling = new Vector3(1, 1, 0) * ((opening) ? 1f : -1f) * _maskScalingSpeed;
         _spriteMask.transform.localScale += scaling * Time.deltaTime;
         if (opening && _spriteMask.transform.localScale.x >= _maxMaskSize)
@@ -93,6 +101,10 @@ public class Player : MonoBehaviour {
             case PlayerState.Running:
                 _speedY = _jumpAcceleration;
                 _playerState = PlayerState.Jumping;
+                _playerAnimator.ResetTrigger("Land");
+                _playerAnimator.SetTrigger("Jump");
+                _playerSpiritAnimator.ResetTrigger("Land");
+                _playerSpiritAnimator.SetTrigger("Jump");
                 break;
             case PlayerState.Jumping:
             case PlayerState.Falling:
@@ -105,8 +117,10 @@ public class Player : MonoBehaviour {
 
     private IEnumerator ShootingHook()
     {
-        InterfaceRun.ThrowLine();
-        while(InputManager.GetRequestedPlayerInput(TapType.Right, true))
+        if (InterfaceRun.ThisScript != null)
+            InterfaceRun.ThrowLine();
+        _hookshotWhoosh.Play();
+        while (InputManager.GetRequestedPlayerInput(TapType.Right, true))
         {
             if (_playerState == PlayerState.Sliding)
             {
@@ -168,7 +182,13 @@ public class Player : MonoBehaviour {
         if (_isMaskOpened && collision.collider.tag != "GROUND")
             return;
         if (PlayerLanded != null && collision.collider.tag == "GROUND")
+        {
+            _playerAnimator.ResetTrigger("Jump");
+            _playerAnimator.SetTrigger("Land");
+            _playerSpiritAnimator.ResetTrigger("Jump");
+            _playerSpiritAnimator.SetTrigger("Land");
             PlayerLanded();
+        }
         Vector2 hitDirection = collision.contacts[0].point - new Vector2(transform.position.x, transform.position.y);
         if (transform.position.y < collision.transform.position.y + (collision.transform.localScale.y * 0.5f))
             KillPlayer();

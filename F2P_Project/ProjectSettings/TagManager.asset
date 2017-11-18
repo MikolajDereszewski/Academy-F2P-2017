@@ -6,6 +6,7 @@ TagManager:
   tags:
   - LEAVES
   - GROUND
+  - PLAYER
   layers:
   - Default
   - TransparentFX
