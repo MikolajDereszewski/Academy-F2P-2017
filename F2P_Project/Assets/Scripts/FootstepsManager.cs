@@ -35,7 +35,6 @@ public class FootstepsManager : MonoBehaviour {
 
     private void OnPlayerExitGround()
     {
-        Debug.Log("PAUSED");
         _audio.Pause();
         CancelInvoke();
     }

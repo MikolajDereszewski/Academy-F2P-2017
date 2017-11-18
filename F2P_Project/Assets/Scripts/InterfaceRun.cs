@@ -22,10 +22,6 @@ public class InterfaceRun : MonoBehaviour
     
     [SerializeField]
     private float _auraTakerMultiplier = 1f;
-    [SerializeField]
-    private float _totalDistance = 8f;
-    [SerializeField]
-    private int _levelCount = 6;
 
     private static InterfaceRun _thisScript;
 
@@ -44,7 +40,7 @@ public class InterfaceRun : MonoBehaviour
 
     void Update()
     {
-        headImage.transform.position += new Vector3(((_totalDistance / (float)_levelCount) / GameBehaviour.GetCurrentLevelInfo().Time) * Time.deltaTime, 0);
+        headImage.transform.position += new Vector3((145f / GameBehaviour.GetCurrentLevelInfo().Time) * Time.deltaTime, 0);
 
         if (!isAura)
         {

@@ -3,7 +3,8 @@ using UnityEngine;
 using GameClasses;
 using System;
 
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour
+{
 
     public event Action PlayerDied;
     public event Action PlayerLanded;
@@ -61,8 +62,6 @@ public class Player : MonoBehaviour {
 
     private void Update()
     {
-        if (!_spriteRenderer1.isVisible && !_spriteRenderer2.isVisible)
-            KillPlayer();
         ScalePlayerMask((InputManager.GetRequestedPlayerInput(TapType.Left, true)));
         if ((InputManager.GetRequestedPlayerInput(TapType.Left, false)))
             _auraAnimator.SetTrigger("AuraPopup");
@@ -72,7 +71,7 @@ public class Player : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if(_playerState != PlayerState.Sliding)
+        if (_playerState != PlayerState.Sliding)
         {
             _speedY -= _gravityAcceleration * Time.deltaTime;
             transform.position += Vector3.up * _speedY * _playerWeight * Time.deltaTime;
@@ -84,7 +83,7 @@ public class Player : MonoBehaviour {
     private void ScalePlayerMask(bool opening)
     {
         _isMaskOpened = opening;
-        if(InterfaceRun.ThisScript != null)
+        if (InterfaceRun.ThisScript != null)
             InterfaceRun.AuraKeyDetection(opening);
         Vector3 scaling = new Vector3(1, 1, 0) * ((opening) ? 1f : -1f) * _maskScalingSpeed;
         _spriteMask.transform.localScale += scaling * Time.deltaTime;
@@ -112,7 +111,7 @@ public class Player : MonoBehaviour {
                     _shootingCoroutine = StartCoroutine(ShootingHook());
                 break;
         }
-        
+
     }
 
     private IEnumerator ShootingHook()
@@ -126,14 +125,14 @@ public class Player : MonoBehaviour {
             {
                 Debug.DrawLine(_hookshot.transform.position, _hookshot.transform.position + _hookshot.GetNormalizedDirectionVector(transform.position) * _hookshot.HookshotDistance, Color.red);
                 transform.position = new Vector3(transform.position.x, _hookshot.transform.position.y + _hookshot.GetNormalizedDirectionVector(transform.position).y * _hookshot.HookshotDistance, transform.position.z);
-                if (Mathf.Acos(_hookshot.GetNormalizedDirectionVector(transform.position).y / _hookshot.GetNormalizedDirectionVector(transform.position).x) > Mathf.PI/4f)
+                if (Mathf.Acos(_hookshot.GetNormalizedDirectionVector(transform.position).y / _hookshot.GetNormalizedDirectionVector(transform.position).x) > Mathf.PI / 4f)
                     break;
             }
             else
                 _hookshot.MoveHook(_hookshotMoveVector);
             yield return null;
         }
-        if(_playerState == PlayerState.Sliding)
+        if (_playerState == PlayerState.Sliding)
             ShootOutOfHook();
         ResetHookshot();
         _shootingCoroutine = null;
@@ -153,6 +152,8 @@ public class Player : MonoBehaviour {
 
     private void KillPlayer()
     {
+        Debug.Log("PLAYER IS DEAD");
+        Time.timeScale = 0f;
         _playerState = PlayerState.Dead;
         if (PlayerDied != null)
             PlayerDied();
@@ -174,32 +175,39 @@ public class Player : MonoBehaviour {
             _playerState = PlayerState.Sliding;
             _hookshot.HookshotDistance = Vector3.Distance(transform.position, _hookshot.transform.position);
         }
-            
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (_isMaskOpened && collision.collider.tag != "GROUND")
-            return;
-        if (PlayerLanded != null && collision.collider.tag == "GROUND")
+        switch (collision.collider.tag)
         {
-            _playerAnimator.ResetTrigger("Jump");
-            _playerAnimator.SetTrigger("Land");
-            _playerSpiritAnimator.ResetTrigger("Jump");
-            _playerSpiritAnimator.SetTrigger("Land");
-            PlayerLanded();
+            case "GROUND":
+                if (PlayerLanded != null)
+                {
+                    _playerAnimator.ResetTrigger("Jump");
+                    _playerAnimator.SetTrigger("Land");
+                    _playerSpiritAnimator.ResetTrigger("Jump");
+                    _playerSpiritAnimator.SetTrigger("Land");
+                    PlayerLanded();
+                }
+                break;
+            case "OBSTACLE":
+                if (_isMaskOpened)
+                    return;
+                KillPlayer();
+                break;
+            case "KILLZONE":
+                KillPlayer();
+                break;
         }
-        Vector2 hitDirection = collision.contacts[0].point - new Vector2(transform.position.x, transform.position.y);
-        if (transform.position.y < collision.transform.position.y + (collision.transform.localScale.y * 0.5f))
-            KillPlayer();
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (_isMaskOpened && collision.collider.tag != "GROUND")
-            return;
+        if (collision.collider.tag == "GROUND")
+            transform.position = new Vector3(transform.position.x, collision.contacts[0].point.y + transform.localScale.y * 0.5f);
         _playerState = PlayerState.Running;
-        transform.position = new Vector3(transform.position.x, collision.contacts[0].point.y + transform.localScale.y*0.5f);
         _speedY = 0f;
     }
 
