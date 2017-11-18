@@ -28,7 +28,7 @@ public class Platform : MonoBehaviour {
 
     private void CreateObstacles()
     {
-        int obstaclesCount = Random.Range(1, (int)(_properties.Length / 7));
+        int obstaclesCount = Random.Range(1, (int)(_properties.Length/2f));
         for(int i = 0; i < obstaclesCount; i++)
         {
             float randomizer = (_properties.Length * 0.5f - (_obstaclePrefab.transform.localScale.x * 0.5f));

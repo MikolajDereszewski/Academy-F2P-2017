@@ -71,6 +71,6 @@ public class GameManager : MonoBehaviour {
 
     private float GetPlatformSpawnY()
     {
-        return (Camera.main.ViewportToWorldPoint(Vector3.zero).y + UnityEngine.Random.Range(0.5f, 1f));
+        return (Camera.main.ViewportToWorldPoint(Vector3.zero).y + UnityEngine.Random.Range(0.5f, 3f));
     }
 }
