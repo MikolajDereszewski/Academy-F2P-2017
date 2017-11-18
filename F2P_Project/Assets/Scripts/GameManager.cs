@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour {
 
     private float GetRandomGap()
     {
-        Vector2 rand = GameBehaviour.GapSize;
+        Vector2 rand = GameBehaviour.GetCurrentLevelInfo().GapSize;
         float gap = UnityEngine.Random.Range(rand.x, rand.y);
         if (!GameBehaviour.GetCurrentLevelInfo().Trees)
             return gap;

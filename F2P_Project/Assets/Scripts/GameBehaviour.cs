@@ -10,6 +10,9 @@ public class Level
     public bool Trees { get { return _treesEnabled; } }
     public bool DoubleTrees { get { return _doubleTreesEnabled; } }
 
+    public Vector2 GapSize { get { return _gapSize; } }
+    public Vector2 PlatformSize { get { return _platformSize; } }
+
     [SerializeField]
     private string _name;
     [SerializeField]
@@ -19,19 +22,18 @@ public class Level
     private bool _treesEnabled;
     [SerializeField]
     private bool _doubleTreesEnabled;
-}
-
-public class GameBehaviour : MonoBehaviour {
-
-    public static GameBehaviour GameBehaviourScript { get { return _thisObject; } }
-    public static Vector2 GapSize { get { return GameBehaviourScript._gapSize * DifficultyManager.GetPlatformLengthMultiplier() / 5f; } }
-    public static Vector2 PlatformSize { get { return GameBehaviourScript._platformSize * DifficultyManager.GetPlatformLengthMultiplier() / 5f; } }
-    public static float GameSpeed { get { return GameBehaviourScript._gameSpeed; } }
 
     [SerializeField]
     private Vector2 _gapSize;
     [SerializeField]
     private Vector2 _platformSize;
+}
+
+public class GameBehaviour : MonoBehaviour {
+
+    public static GameBehaviour GameBehaviourScript { get { return _thisObject; } }
+    public static float GameSpeed { get { return GameBehaviourScript._gameSpeed; } }
+
     [SerializeField]
     private float _gameSpeed;
     [SerializeField]

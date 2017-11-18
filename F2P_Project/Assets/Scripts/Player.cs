@@ -6,6 +6,10 @@ using System;
 public class Player : MonoBehaviour {
 
     public event Action PlayerDied;
+    public event Action PlayerLanded;
+    public event Action PlayerExitGround;
+
+    public PlayerState CurrentState { get { return _playerState; } }
 
     [SerializeField]
     private PlayerState _playerState;
@@ -54,10 +58,7 @@ public class Player : MonoBehaviour {
             KillPlayer();
         ScalePlayerMask((InputManager.GetRequestedPlayerInput(TapType.Left, true)));
         if ((InputManager.GetRequestedPlayerInput(TapType.Left, false)))
-        {
             _auraAnimator.SetTrigger("AuraPopup");
-            //_auraAnimator.ResetTrigger("AuraPopup");
-        }
         if (InputManager.GetRequestedPlayerInput(TapType.Right))
             Jump();
     }
@@ -166,6 +167,8 @@ public class Player : MonoBehaviour {
     {
         if (_isMaskOpened && collision.collider.tag != "GROUND")
             return;
+        if (PlayerLanded != null && collision.collider.tag == "GROUND")
+            PlayerLanded();
         Vector2 hitDirection = collision.contacts[0].point - new Vector2(transform.position.x, transform.position.y);
         if (transform.position.y < collision.transform.position.y + (collision.transform.localScale.y * 0.5f))
             KillPlayer();
@@ -184,5 +187,7 @@ public class Player : MonoBehaviour {
     {
         if (_playerState != PlayerState.Jumping)
             _playerState = PlayerState.Falling;
+        if (PlayerExitGround != null && collision.collider.tag == "GROUND")
+            PlayerExitGround();
     }
 }

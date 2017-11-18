@@ -131,7 +131,7 @@ namespace GameClasses
 
         public void Initialize()
         {
-            Vector2 rand = GameBehaviour.PlatformSize;
+            Vector2 rand = GameBehaviour.GetCurrentLevelInfo().PlatformSize;
             _length = UnityEngine.Random.Range(rand.x, rand.y);
             _sprite = GameSkin.Platform[Random.Range(0, GameSkin.Platform.Count)];
         }

@@ -29,7 +29,6 @@ public class InterfaceRun : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(headImage.transform.position);
         _thisScript = this;
 
         slider.minValue = 0;
