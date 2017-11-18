@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Coin : MonoBehaviour
+public class Coins : MonoBehaviour
 {
     private int score = 0;
     private int energia = 0;
@@ -12,7 +12,7 @@ public class Coin : MonoBehaviour
     private bool modeSlow = false;
     private Image image;
 
-    public Coin(int score, int energia, int nut, Image image)
+    public Coins(int score, int energia, int nut, Image image)
     {
         this.score = score;
         this.energia = energia;
@@ -20,14 +20,14 @@ public class Coin : MonoBehaviour
         this.image = image;
     }
 
-    public Coin(bool modeSpeed, bool modeSlow, Image image)
+    public Coins(bool modeSpeed, bool modeSlow, Image image)
     {
         this.modeSlow = modeSlow;
         this.modeSpeed = modeSpeed;
         this.image = image;
     }
 
-    public Coin(int score, int energia, int nut, bool modeSpeed, bool modeSlow, Image image)
+    public Coins(int score, int energia, int nut, bool modeSpeed, bool modeSlow, Image image)
     {
         this.score = score;
         this.energia = energia;

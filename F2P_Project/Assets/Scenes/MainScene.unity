@@ -688,6 +688,7 @@ MonoBehaviour:
   slider: {fileID: 1708466636}
   coins: {fileID: 2030254889}
   headImage: {fileID: 1025932008}
+  panelPause: {fileID: 0}
   _auraTakerMultiplier: 2
 --- !u!1 &907523054
 GameObject:
@@ -2105,7 +2106,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 90.1, y: -80}
+  m_AnchoredPosition: {x: 90.09961, y: -80}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1878983612
