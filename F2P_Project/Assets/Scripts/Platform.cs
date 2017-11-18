@@ -18,8 +18,10 @@ public class Platform : MonoBehaviour {
         _properties.Initialize();
         _renderer1.sprite = _properties.Sprite;
         _renderer2.sprite = _properties.Sprite;
-        transform.localScale = new Vector3(_properties.Length, transform.localScale.y, transform.localScale.z);
-        transform.position = spawnPosition + Vector3.right * (_properties.Length * 0.5f);
+        _renderer1.size = new Vector2(_properties.Length, 0.45f);
+        _renderer2.size = new Vector2(_properties.Length, 0.45f);
+        GetComponent<BoxCollider2D>().size = new Vector2(_properties.Length, 0.1f);
+        transform.position = spawnPosition + Vector3.right * (_properties.Length * 0.5f) * 5f;
         if(createObstacles)
             CreateObstacles();
     }
@@ -37,6 +39,6 @@ public class Platform : MonoBehaviour {
 
     public Vector3 GetEndPoint()
     {
-        return transform.position + Vector3.right * (_properties.Length / 2f);
+        return transform.position + Vector3.right * (_properties.Length / 2f) * 5f;
     }
 }
