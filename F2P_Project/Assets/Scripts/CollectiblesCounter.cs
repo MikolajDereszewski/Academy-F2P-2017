@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Linq;
 
 public enum CollectibleType
@@ -33,18 +34,38 @@ public class Collectible
     }
 }
 
+[System.Serializable]
+class Counter
+{
+    public Text Text;
+    public CollectibleType Type;
+}
+
 public class CollectiblesCounter : MonoBehaviour {
 
     public List<Collectible> Collectibles { get { return _collectibles; } }
 
     [SerializeField]
     private List<Collectible> _collectibles;
+    [SerializeField]
+    private List<Counter> _counters;
 
     private static CollectiblesCounter _thisCounter;
 
     private void Awake()
     {
         _thisCounter = this;
+    }
+
+    private void Update()
+    {
+        foreach(Counter C in _counters)
+        {
+            Collectible col = _collectibles.FirstOrDefault(_ => _.Type == C.Type);
+            if (col == null)
+                continue;
+            C.Text.text = col.Count.ToString();
+        }
     }
 
     public static void AddCollectible(Collectible col)
