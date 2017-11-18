@@ -419,6 +419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c815453d40df3b4487b9ac8f38f2b38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bestScore: {fileID: 0}
   listImage:
   - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 21300000, guid: 05ba09afe6c38d44c97559d612adcd48, type: 3}
@@ -744,7 +745,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Powr\xF3t"
+  m_Text: Back
 --- !u!222 &705292038
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1825,7 +1826,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Pieni\u0105dze: 0"
+  m_Text: 'Money: 0'
 --- !u!222 &1764981617
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1899,7 +1900,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Wybierz bohatera
+  m_Text: Choose hero
 --- !u!222 &1795741939
 CanvasRenderer:
   m_ObjectHideFlags: 0

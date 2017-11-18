@@ -13,6 +13,7 @@ public class InterfaceRun : MonoBehaviour
     public Slider slider;
     public Text coins;
     public Image headImage;
+    public Image panelPause;
 
     private static bool isAura = false;
     private float time;
@@ -70,5 +71,13 @@ public class InterfaceRun : MonoBehaviour
     public static void ThrowLine()
     {
         _thisScript.slider.value -= 5 * _thisScript._auraTakerMultiplier;
+    }
+
+    public void HidePanelPause()
+    {
+        if (panelPause.isActiveAndEnabled)
+            panelPause.enabled = true;
+        else
+            panelPause.enabled = false;
     }
 }

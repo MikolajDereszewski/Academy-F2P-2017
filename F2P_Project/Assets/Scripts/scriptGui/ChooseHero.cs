@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class ChooseHero : MonoBehaviour
 {
-    const string MONEY = MainMenu.MONEY;
-    const string PREF_NAME = "Index";
-
     public Text bestScore;
     public Sprite[] listImage;
     public string[] listName;
@@ -17,15 +14,15 @@ public class ChooseHero : MonoBehaviour
     private int actualIndexHero;
     void Start()
     {
-        if (PlayerPrefs.HasKey(PREF_NAME))
-            actualIndexHero = PlayerPrefs.GetInt(PREF_NAME);
+        if (PlayerPrefs.HasKey(BasePrefName.HERO_INDEX))
+            actualIndexHero = PlayerPrefs.GetInt(BasePrefName.HERO_INDEX);
         else
             actualIndexHero = 0;
 
-        if (PlayerPrefs.HasKey(MONEY))
-            bestScore.text = "Najlepszy wynik: " + PlayerPrefs.GetInt(MONEY);
+        if (PlayerPrefs.HasKey(BasePrefName.BEST_SCORE))
+            bestScore.text = "Best score: " + PlayerPrefs.GetInt(BasePrefName.BEST_SCORE);
         else
-            bestScore.text = "Najlepszy wynik: " + PlayerPrefs.GetInt(MONEY);
+            bestScore.text = "Best score: " + PlayerPrefs.GetInt(BasePrefName.BEST_SCORE);
 
         UpdateHero();
     }
