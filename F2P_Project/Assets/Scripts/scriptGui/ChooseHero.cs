@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class ChooseHero : MonoBehaviour
 {
-    const string MONEY = MainMenu.MONEY;
-    const string PREF_NAME = "Index";
+    const string MONEY = BasePrefName.MONEY;
+    const string PREF_NAME = BasePrefName.HERO_INDEX;
 
     public Text bestScore;
     public Sprite[] listImage;

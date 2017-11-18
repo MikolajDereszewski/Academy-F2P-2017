@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public const string NAME_PREF = "Score";
-    public const string MONEY = "Money";
+    const string NAME_PREF = BasePrefName.BEST_SCORE;
+    const string MONEY = BasePrefName.MONEY;
 
     public Text textScore;
     public Text textMoney;
