@@ -26,6 +26,8 @@ public class Hookshot : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (HookshotDistance != 0f)
+            return;
         if (other.tag == "LEAVES" && HitTree != null)
         {
             _lockedYPosition = transform.position.y;

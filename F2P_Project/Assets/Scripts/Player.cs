@@ -68,6 +68,7 @@ public class Player : MonoBehaviour {
     private void ScalePlayerMask(bool opening)
     {
         _isMaskOpened = opening;
+        InterfaceRun.AuraKeyDetection(opening);
         Vector3 scaling = new Vector3(1, 1, 0) * ((opening) ? 1f : -1f) * _maskScalingSpeed;
         _spriteMask.transform.localScale += scaling * Time.deltaTime;
         if (opening && _spriteMask.transform.localScale.x >= _maxMaskSize)
@@ -95,6 +96,7 @@ public class Player : MonoBehaviour {
 
     private IEnumerator ShootingHook()
     {
+        InterfaceRun.ThrowLine();
         while(InputManager.GetRequestedPlayerInput(TapType.Right, true))
         {
             if (_playerState == PlayerState.Sliding)
