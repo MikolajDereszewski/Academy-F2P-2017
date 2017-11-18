@@ -1,8 +1,17 @@
 ﻿using System.Collections;
 using UnityEngine;
 using GameClasses;
+using UnityEngine.UI;
 
 public class TutorialPauseTrigger : MonoBehaviour {
+    public Image image;
+    public Image arrow;
+    public Text text;
+    public Text doNothink;
+    public int positionX;
+    public string discribe;
+
+    private int iteration = 0;
 
     [SerializeField]
     private SpriteRenderer _spriteInstruction = null;
@@ -22,6 +31,12 @@ public class TutorialPauseTrigger : MonoBehaviour {
 
     private void DestroyObject()
     {
+        text.enabled = false;
+        image.enabled = false;
+        arrow.enabled = false;
+        if (doNothink != null)
+            doNothink.enabled = false;
+
         Destroy(gameObject);
     }
 
@@ -29,6 +44,16 @@ public class TutorialPauseTrigger : MonoBehaviour {
     {
         if(collision.tag == "PLAYER")
         {
+            
+            text.text = discribe;  
+            image.rectTransform.position = new Vector2(positionX, image.rectTransform.position.y);
+            iteration++;
+            image.enabled = true;
+            text.enabled = true;
+            arrow.enabled = true;
+            if (doNothink != null)
+                doNothink.enabled = true;
+
             StartCoroutine(PauseGameAtBreakpoint());
         }
     }
