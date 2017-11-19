@@ -99,6 +99,7 @@ public class DieScript : MonoBehaviour {
         PlayerPrefs.SetInt(BasePrefName.MODE_SLOW, PlayerPrefs.GetInt(BasePrefName.MODE_SLOW) + modeSlow);
 
         PlayerPrefs.Save();
+        Debug.Log(PlayerPrefs.GetInt(BasePrefName.ALL_SCORE));
     }
 
 	void Start () {

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Records;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,10 +20,8 @@ public class ChooseHero : MonoBehaviour
         else
             actualIndexHero = 0;
 
-        if (PlayerPrefs.HasKey(BasePrefName.BEST_SCORE))
-            bestScore.text = "Best score: " + PlayerPrefs.GetInt(BasePrefName.BEST_SCORE);
-        else
-            bestScore.text = "Best score: " + PlayerPrefs.GetInt(BasePrefName.BEST_SCORE);
+        Statistics.LoadValuesFromPrefs();
+        bestScore.text = Statistics._totalCoins.ToString();
 
         UpdateHero();
     }
