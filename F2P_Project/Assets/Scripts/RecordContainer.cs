@@ -17,7 +17,12 @@ namespace Records
         public static int _totalWebs;
         public static int _topScore;
         public static bool _soundEnabled;
-        public static int _nutsLevel;
+        public static int _slot_0;
+        public static int _slot_1;
+        public static int _slot_2;
+        public static int _slot_3;
+        public static int _slot_4;
+        public static int _slot_5;
 
         public static void LoadValuesFromPrefs()
         {
@@ -30,8 +35,13 @@ namespace Records
             _totalRockets = PlayerPrefs.GetInt("TOTAL_ROCKETS");
             _totalWebs = PlayerPrefs.GetInt("TOTAL_WEBS");
             _topScore = PlayerPrefs.GetInt("HIGHSCORE");
-            _soundEnabled = (PlayerPrefs.HasKey("SOUND")) ? (PlayerPrefs.GetInt("SOUND") == 1) : true;
-            _nutsLevel = PlayerPrefs.GetInt("NUTS_LEVEL");
+            _soundEnabled = PlayerPrefs.GetInt("SOUND") == 0 ? false : true;
+            _slot_0 = PlayerPrefs.GetInt("SLOT_0");
+            _slot_1 = PlayerPrefs.GetInt("SLOT_1");
+            _slot_2 = PlayerPrefs.GetInt("SLOT_2");
+            _slot_2 = PlayerPrefs.GetInt("SLOT_3");
+            _slot_2 = PlayerPrefs.GetInt("SLOT_4");
+            _slot_2 = PlayerPrefs.GetInt("SLOT_5");
         }
 
         public static void SaveValuesToPrefs()
@@ -46,32 +56,13 @@ namespace Records
             PlayerPrefs.SetInt("TOTAL_WEBS", _totalWebs);
             PlayerPrefs.SetInt("HIGHSCORE", _topScore);
             PlayerPrefs.SetInt("SOUND", _soundEnabled ? 1 : 0);
-            PlayerPrefs.SetInt("NUTS_LEVEL", _nutsLevel);
+            PlayerPrefs.SetInt("SLOT_0", _slot_0);
+            PlayerPrefs.SetInt("SLOT_1", _slot_1);
+            PlayerPrefs.SetInt("SLOT_2", _slot_2);
+            PlayerPrefs.SetInt("SLOT_3", _slot_2);
+            PlayerPrefs.SetInt("SLOT_4", _slot_2);
+            PlayerPrefs.SetInt("SLOT_5", _slot_2);
             PlayerPrefs.Save();
-        }
-
-        public static void ResetAllPrefs()
-        {
-            PlayerPrefs.DeleteAll();
-        }
-
-        public static void IncreaseNutsLevel()
-        {
-            _nutsLevel++;
-        }
-
-        public static int GetNutsThreshold(int level)
-        {
-            return 3 + level;
-        }
-
-        public static int GetTotalNeededNuts(int level)
-        {
-            if (level < 0)
-                return 0;
-            if (level == 0)
-                return 3;
-            return GetNutsThreshold(_nutsLevel) + GetTotalNeededNuts(level - 1);
         }
     }
 
@@ -102,11 +93,6 @@ namespace Records
         private Text _rocketsText = null;
         [SerializeField]
         private Text _websText = null;
-        [SerializeField]
-        private Slider _nutsSlider = null;
-
-        [SerializeField]
-        private Animator _nutCardAnimator = null;
 
         public static RecordContainer _thisScript;
 
@@ -121,18 +107,11 @@ namespace Records
             _thisScript._scoreText.text += cCoins.ToString();
             _thisScript._coinGoldenText.text = cGold.ToString();
             _thisScript._coinSilverText.text = cSilver.ToString();
-            int val = (cNuts + Statistics._totalNuts);
-            int trsh = Statistics.GetNutsThreshold(Statistics._nutsLevel);
-            int ttl = Statistics.GetTotalNeededNuts(Statistics._nutsLevel);
-            _thisScript._nutsSliderText.text = (val >= ttl ? val - ttl + trsh : val - Statistics.GetTotalNeededNuts(Statistics._nutsLevel - 1)).ToString() + " / " + trsh.ToString();
-            _thisScript._nutsSlider.value = (val - Statistics.GetTotalNeededNuts(Statistics._nutsLevel - 1)) / (float)trsh;
+            _thisScript._nutsSliderText.text = (cNuts + Statistics._totalNuts).ToString() + " / 10";
             _thisScript._nutsText.text = cNuts.ToString();
             _thisScript._energyText.text = cEnergy.ToString();
             _thisScript._rocketsText.text = cRockets.ToString();
             _thisScript._websText.text = cWebs.ToString();
-
-            if (Statistics.GetTotalNeededNuts(Statistics._nutsLevel) <= (cNuts + Statistics._totalNuts))
-                _thisScript.CollectedNeededNuts();
 
             if (cCoins > Statistics._topScore)
                 Statistics._topScore = cCoins;
@@ -157,12 +136,6 @@ namespace Records
             cWebs = 0;
 
             Statistics.SaveValuesToPrefs();
-        }
-
-        private void CollectedNeededNuts()
-        {
-            _nutCardAnimator.Play("GameOverSliding");
-            Statistics.IncreaseNutsLevel();
         }
     }
 }
