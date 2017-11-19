@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using GameClasses;
 using System;
+using Records;
 
 public class GameManager : MonoBehaviour {
 
@@ -10,6 +11,10 @@ public class GameManager : MonoBehaviour {
     private Platform _platformPrefab = null;
     [SerializeField]
     private GameObject _treePrefab = null;
+    [SerializeField]
+    private Player _player;
+    [SerializeField]
+    private Animator _gameOverAnimator;
 
     private GameState _gameState = GameState.BeforeStart;
     
@@ -32,6 +37,10 @@ public class GameManager : MonoBehaviour {
 
     private void InitializeGame()
     {
+        _player.PlayerDied += OnPlayerDied;
+        _player.PlayerDied += GameBehaviour.OnPlayerDied;
+        _player.PlayerDied += InterfaceRun.OnPlayerDied;
+        _player.PlayerDied += RecordContainer.OnPlayerDied;
         _currentActivePlatform.Initialize(_currentActivePlatform.transform.position, false);
         IncreaseLevel += DifficultyManager.OnIncreaseLevel;
         DifficultyManager.SetStartTime(Time.time);
@@ -76,5 +85,15 @@ public class GameManager : MonoBehaviour {
     private float GetPlatformSpawnY()
     {
         return (Camera.main.ViewportToWorldPoint(Vector3.zero).y + UnityEngine.Random.Range(0.5f, 3f));
+    }
+
+    public void LoadScene(string name)
+    {
+        Application.LoadLevel(name);
+    }
+
+    private void OnPlayerDied()
+    {
+        _gameOverAnimator.Play("GameOverSliding");
     }
 }

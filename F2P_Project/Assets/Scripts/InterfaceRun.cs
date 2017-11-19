@@ -78,6 +78,11 @@ public class InterfaceRun : MonoBehaviour
         _thisScript.slider.value += value;
     }
 
+    public static void OnPlayerDied()
+    {
+        _thisScript.enabled = false;
+    }
+
     public void HidePanelPause()
     {
         if (panelPause.isActiveAndEnabled)

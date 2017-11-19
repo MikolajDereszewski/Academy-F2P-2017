@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Records;
 
 public class InGameCollectible : MonoBehaviour
 {
@@ -16,6 +17,22 @@ public class InGameCollectible : MonoBehaviour
         _renderer.sprite = _sprite;
     }
 
+    private void AddToTotalScore()
+    {
+        switch(_collectible.Type)
+        {
+            case CollectibleType.Coin:
+                RecordContainer.cCoins += _collectible.Count;
+                break;
+            case CollectibleType.Nut:
+                RecordContainer.cNuts += _collectible.Count;
+                break;
+            case CollectibleType.Mana:
+                RecordContainer.cEnergy += _collectible.Count;
+                break;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "PLAYER")
@@ -30,6 +47,7 @@ public class InGameCollectible : MonoBehaviour
             if(_afterCollectPrefab != null)
                 Instantiate(_afterCollectPrefab, transform.position, Quaternion.identity);
 
+            AddToTotalScore();
             Destroy(gameObject);
         }
     }

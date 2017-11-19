@@ -50,4 +50,9 @@ public class GameBehaviour : MonoBehaviour {
     {
         return _thisObject._levels[DifficultyManager.CurrentLevel];
     }
+
+    public static void OnPlayerDied()
+    {
+        _thisObject._gameSpeed = 0f;
+    }
 }
