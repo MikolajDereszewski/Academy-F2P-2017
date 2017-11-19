@@ -16,10 +16,13 @@ public class FootstepsManager : MonoBehaviour {
     {
         _player.PlayerLanded += OnPlayerLanded;
         _player.PlayerExitGround += OnPlayerExitGround;
+        _player.PlayerDied += OnPlayerDied;
     }
 
     private void PlayNextSound()
     {
+        if (_player.CurrentState == PlayerState.Dead)
+            return;
         int next = Random.Range(0, _footsteps.Count);
         _audio.clip = _footsteps[next];
         _audio.Play();
@@ -37,5 +40,11 @@ public class FootstepsManager : MonoBehaviour {
     {
         _audio.Pause();
         CancelInvoke();
+    }
+
+    private void OnPlayerDied()
+    {
+        OnPlayerExitGround();
+        this.enabled = false;
     }
 }
