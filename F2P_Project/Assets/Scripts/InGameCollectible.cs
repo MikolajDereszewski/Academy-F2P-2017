@@ -22,13 +22,19 @@ public class InGameCollectible : MonoBehaviour
         switch(_collectible.Type)
         {
             case CollectibleType.Coin:
-                RecordContainer.cCoins += _collectible.Count;
+                RecordContainer.cCoins += (int)_collectible.Count;
                 break;
             case CollectibleType.Nut:
-                RecordContainer.cNuts += _collectible.Count;
+                RecordContainer.cNuts += (int)_collectible.Count;
                 break;
             case CollectibleType.Mana:
-                RecordContainer.cEnergy += _collectible.Count;
+                RecordContainer.cEnergy += (int)_collectible.Count;
+                break;
+            case CollectibleType.Rocket:
+                RecordContainer.cRockets++;
+                break;
+            case CollectibleType.Web:
+                RecordContainer.cWebs++;
                 break;
         }
     }
@@ -39,10 +45,20 @@ public class InGameCollectible : MonoBehaviour
         {
             if (collision.GetComponent<Player>().HasMaskOpened)
                 return;
-            if (_collectible.Type == CollectibleType.Mana)
-                InterfaceRun.CollectMana(_collectible.Count);
-            else
-                CollectiblesCounter.AddCollectible(_collectible);
+            switch(_collectible.Type)
+            {
+                case CollectibleType.Coin:
+                case CollectibleType.Nut:
+                    CollectiblesCounter.AddCollectible(_collectible);
+                    break;
+                case CollectibleType.Mana:
+                    InterfaceRun.CollectMana((int)_collectible.Count);
+                    break;
+                case CollectibleType.Rocket:
+                case CollectibleType.Web:
+                    GameBehaviour.GameBehaviourScript.StartCoroutine(GameBehaviour.ChangeSpeedMultiplier(_collectible.Count, 10f));
+                    break;
+            }
 
             if(_afterCollectPrefab != null)
                 Instantiate(_afterCollectPrefab, transform.position, Quaternion.identity);

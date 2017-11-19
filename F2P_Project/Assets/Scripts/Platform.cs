@@ -11,6 +11,8 @@ public class Platform : MonoBehaviour {
     [SerializeField]
     private List<ScrollingObject> _collectiblesPrefabs = null;
     [SerializeField]
+    private List<ScrollingObject> _specialPrefabs = null;
+    [SerializeField]
     private SpriteRenderer _renderer1, _renderer2;
 
     private PlatformProperties _properties;
@@ -28,6 +30,7 @@ public class Platform : MonoBehaviour {
         if(createObstacles)
             CreateObstacles();
         CreateCollectibles();
+        CreateSpecials();
     }
 
     private void CreateObstacles()
@@ -36,9 +39,11 @@ public class Platform : MonoBehaviour {
         for(int i = 0; i < obstaclesCount; i++)
         {
             int index = Random.Range(0, _obstaclePrefabs.Count);
-            float randomizer = (_properties.Length * 0.5f - (_obstaclePrefabs[index].transform.localScale.x * 0.5f));
-            Vector3 spawnPosition = new Vector3(Random.Range(-randomizer, randomizer) + transform.position.x, transform.position.y, _obstaclePrefabs[index].transform.position.z);
-            Instantiate(_obstaclePrefabs[index], spawnPosition, Quaternion.identity);
+            float randomizer = (_properties.Length * 0.5f * 5f) * 0.9f;
+            Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y, _obstaclePrefabs[index].transform.position.z);
+            spawnPosition += Random.Range(-randomizer, randomizer) * Vector3.right;
+            var obs = Instantiate(_obstaclePrefabs[index], spawnPosition, Quaternion.identity);
+            obs.GetComponent<SpriteRenderer>().flipX = (Random.Range(0, 2) != 1 ? true : false);
         }
     }
 
@@ -49,6 +54,14 @@ public class Platform : MonoBehaviour {
             Vector3 spawnPosition = transform.position - Vector3.right * (_properties.Length / 2f) * 5f + Vector3.right * i * 2f + Vector3.up;
             Instantiate(_collectiblesPrefabs[Random.Range(0, _collectiblesPrefabs.Count)], spawnPosition, Quaternion.identity);
         }
+    }
+
+    private void CreateSpecials()
+    {
+        if (Random.Range(0, 100) > 20f)
+            return;
+        Vector3 spawnPosition = transform.position + Vector3.up;
+        Instantiate(_specialPrefabs[Random.Range(0, _specialPrefabs.Count)], spawnPosition, Quaternion.identity);
     }
 
     public Vector3 GetEndPoint()

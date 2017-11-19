@@ -74,7 +74,7 @@ namespace Records
         {
             _thisScript._scoreText.text += cCoins.ToString();
             _thisScript._coinText.text += cCoins.ToString();
-            _thisScript._nutsText.text = cNuts.ToString() + " / 10";
+            _thisScript._nutsText.text = (cNuts + Statistics._totalNuts).ToString() + " / 10";
             _thisScript._energyText.text += cEnergy.ToString();
             _thisScript._rocketsText.text += cRockets.ToString();
             _thisScript._websText.text += cWebs.ToString();
@@ -90,6 +90,12 @@ namespace Records
             Statistics._totalEnergy += cEnergy;
             Statistics._totalRockets += cRockets;
             Statistics._totalWebs += cWebs;
+
+            cCoins = 0;
+            cNuts = 0;
+            cEnergy = 0;
+            cRockets = 0;
+            cWebs = 0;
 
             Statistics.SaveValuesToPrefs();
         }

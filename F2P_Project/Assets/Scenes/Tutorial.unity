@@ -1028,6 +1028,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1058472974}
   - component: {fileID: 1058472973}
+  - component: {fileID: 1058472975}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1054,6 +1055,7 @@ MonoBehaviour:
     _doubleTreesEnabled: 1
     _gapSize: {x: 5, y: 10}
     _platformSize: {x: 5, y: 10}
+  _multiplier: 0
 --- !u!4 &1058472974
 Transform:
   m_ObjectHideFlags: 0
@@ -1067,6 +1069,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1058472975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1058472972}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 462d29d6571f19846836d94f37544ff5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _platformPrefab: {fileID: 0}
+  _treePrefab: {fileID: 0}
+  _player: {fileID: 0}
+  _gameOverAnimator: {fileID: 0}
+  _currentActivePlatform: {fileID: 0}
 --- !u!1 &1248019262
 GameObject:
   m_ObjectHideFlags: 0
@@ -2510,7 +2528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4975a6e437fc3b149a8cd508ce5bdd69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  threshold: 0.55
+  threshold: 0.65
   intensity: 2.5
   blurSize: 1
   blurIterations: 4

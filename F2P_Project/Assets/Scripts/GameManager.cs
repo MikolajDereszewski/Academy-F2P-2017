@@ -16,11 +16,19 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private Animator _gameOverAnimator;
 
+    [SerializeField]
+    private Animator _speedUpAnimator;
+
     private GameState _gameState = GameState.BeforeStart;
     
     [SerializeField]
     private Platform _currentActivePlatform;
     private float _currentActiveGap;
+
+    private void Awake()
+    {
+        DifficultyManager.SetStartTime(Time.time);
+    }
 
     private void Start()
     {
@@ -32,7 +40,10 @@ public class GameManager : MonoBehaviour {
         if (Camera.main.WorldToViewportPoint(GetCurrentPlatformEndPoint()).x < 1)
             _currentActivePlatform = CreatePlatform();
         if (DifficultyManager.GetLevelTime(Time.time) >= GameBehaviour.GetCurrentLevelInfo().Time && IncreaseLevel != null)
+        {
+            _speedUpAnimator.Play("InGameTextSlide");
             IncreaseLevel(Time.time);
+        } 
     }
 
     private void InitializeGame()
@@ -43,7 +54,6 @@ public class GameManager : MonoBehaviour {
         _player.PlayerDied += RecordContainer.OnPlayerDied;
         _currentActivePlatform.Initialize(_currentActivePlatform.transform.position, false);
         IncreaseLevel += DifficultyManager.OnIncreaseLevel;
-        DifficultyManager.SetStartTime(Time.time);
         _gameState = GameState.Running;
     }
 

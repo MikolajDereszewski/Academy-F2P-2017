@@ -8,21 +8,23 @@ public enum CollectibleType
 {
     Coin = 0,
     Nut = 1,
-    Mana = 2
+    Mana = 2,
+    Rocket = 3,
+    Web = 4
 }
 
 [System.Serializable]
 public class Collectible
 {
     public CollectibleType Type { get { return _type; } }
-    public int Count { get { return _count; } }
+    public float Count { get { return _count; } }
 
     [SerializeField]
     private CollectibleType _type;
     [SerializeField]
-    private int _count;
+    private float _count;
 
-    public Collectible(CollectibleType type, int count = 0)
+    public Collectible(CollectibleType type, float count = 0)
     {
         _type = type;
         _count = count;
@@ -73,6 +75,6 @@ public class CollectiblesCounter : MonoBehaviour {
         Collectible counter = _thisCounter.Collectibles.FirstOrDefault(_ => _.Type == col.Type);
         if (counter == null)
             return;
-        counter.AddCount(col.Count);
+        counter.AddCount((int)col.Count);
     }
 }
