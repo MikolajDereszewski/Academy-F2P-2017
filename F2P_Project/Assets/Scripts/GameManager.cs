@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour {
 
     private void Awake()
     {
+        Time.timeScale = 1f;
         DifficultyManager.SetStartTime(Time.time);
     }
 

@@ -1490,6 +1490,7 @@ MonoBehaviour:
   _treePrefab: {fileID: 0}
   _player: {fileID: 0}
   _gameOverAnimator: {fileID: 0}
+  _speedUpAnimator: {fileID: 0}
   _currentActivePlatform: {fileID: 0}
 --- !u!1 &1248019262
 GameObject:

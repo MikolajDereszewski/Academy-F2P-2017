@@ -3,7 +3,8 @@ using UnityEngine;
 using GameClasses;
 using UnityEngine.UI;
 
-public class TutorialPauseTrigger : MonoBehaviour {
+public class TutorialPauseTrigger : MonoBehaviour
+{
     public Image image;
     public Image arrow;
     public Text text;
@@ -22,7 +23,7 @@ public class TutorialPauseTrigger : MonoBehaviour {
     {
         Time.timeScale = 0f;
         _spriteInstruction.enabled = true;
-        while (!InputManager.GetRequestedPlayerInput(_requestedInput))
+        while (!InputManager.GetRequestedPlayerInput(_requestedInput) || doNothink != null)
             yield return null;
         _spriteInstruction.enabled = false;
         Time.timeScale = 1f;
@@ -42,10 +43,10 @@ public class TutorialPauseTrigger : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "PLAYER")
+        if (collision.tag == "PLAYER")
         {
-            
-            text.text = discribe;  
+
+            text.text = discribe;
             image.rectTransform.position = new Vector2(positionX, image.rectTransform.position.y);
             iteration++;
             image.enabled = true;
