@@ -1201,6 +1201,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1492ef6037d82d43ba28a76adecab63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  golden: {fileID: 944113708}
+  silver: {fileID: 854090545}
   mana: {fileID: 1830749653}
   nuts: {fileID: 753736993}
   modeSpeed: {fileID: 261274898}

@@ -23,6 +23,10 @@ public class InGameCollectible : MonoBehaviour
         {
             case CollectibleType.Coin:
                 RecordContainer.cCoins += (int)_collectible.Count;
+                if (_collectible.Count == 5)
+                    RecordContainer.cSilver++;
+                else
+                    RecordContainer.cGold++;
                 break;
             case CollectibleType.Nut:
                 RecordContainer.cNuts += (int)_collectible.Count;
@@ -47,8 +51,11 @@ public class InGameCollectible : MonoBehaviour
                 return;
             switch(_collectible.Type)
             {
-                case CollectibleType.Coin:
                 case CollectibleType.Nut:
+                    InterfaceRun.CollectMana(10);
+                    CollectiblesCounter.AddCollectible(_collectible);
+                    break;
+                case CollectibleType.Coin:
                     CollectiblesCounter.AddCollectible(_collectible);
                     break;
                 case CollectibleType.Mana:

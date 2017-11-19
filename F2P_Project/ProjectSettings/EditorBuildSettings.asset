@@ -20,3 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: c0b35334cbf8bdc45a25a4c6ffa5394e
+  - enabled: 1
+    path: Assets/Scenes/Equipment.unity
+    guid: c9ce483710d2b1c4f9da4868ecaa050f
+  - enabled: 1
+    path: Assets/Scenes/Achievement.unity
+    guid: 6da7ef8526f144a4f8028e6484efc661
