@@ -11,6 +11,7 @@ public class TutorialPauseTrigger : MonoBehaviour
     public Text doNothink;
     public int positionX;
     public string discribe;
+    public bool isLastTrigger;
 
     private int iteration = 0;
 
@@ -25,9 +26,13 @@ public class TutorialPauseTrigger : MonoBehaviour
         _spriteInstruction.enabled = true;
         while (!InputManager.GetRequestedPlayerInput(_requestedInput) || doNothink != null)
             yield return null;
-        _spriteInstruction.enabled = false;
-        Time.timeScale = 1f;
-        DestroyObject();
+
+        if (!isLastTrigger)
+        {
+            _spriteInstruction.enabled = false;
+            Time.timeScale = 1f;
+            DestroyObject();
+        }
     }
 
     private void DestroyObject()
