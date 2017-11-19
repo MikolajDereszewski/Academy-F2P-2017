@@ -163,8 +163,9 @@ MonoBehaviour:
   arrow: {fileID: 1400217619}
   text: {fileID: 2140372798}
   doNothink: {fileID: 160681647}
-  positionX: 280
+  positionX: 320
   discribe: Back
+  isLastTrigger: 1
   _spriteInstruction: {fileID: 26590472}
   _requestedInput: 2
 --- !u!114 &26590470
@@ -381,7 +382,8 @@ MonoBehaviour:
   text: {fileID: 1569922998}
   doNothink: {fileID: 0}
   positionX: 400
-  discribe: Click...
+  discribe: Click on the right side...
+  isLastTrigger: 0
   _spriteInstruction: {fileID: 145846443}
   _requestedInput: 2
 --- !u!114 &145846441
@@ -509,7 +511,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0000060797, y: 20}
+  m_AnchoredPosition: {x: -0.0000060797, y: 31}
   m_SizeDelta: {x: 205.3, y: 124.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &160681647
@@ -533,16 +535,16 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 82
+    m_FontSize: 200
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 5
-    m_MaxSize: 91
+    m_MinSize: 1
+    m_MaxSize: 200
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: RUN!
 --- !u!222 &160681648
@@ -828,8 +830,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.9, y: -108.95}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -15, y: -208}
+  m_SizeDelta: {x: 285.1, y: 222.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &557493325
 MonoBehaviour:
@@ -900,7 +902,8 @@ MonoBehaviour:
   text: {fileID: 1569922998}
   doNothink: {fileID: 0}
   positionX: 400
-  discribe: Click to jump over the hole
+  discribe: Click on the right side to jump over the hole
+  isLastTrigger: 0
   _spriteInstruction: {fileID: 567842491}
   _requestedInput: 2
 --- !u!114 &567842489
@@ -1047,10 +1050,10 @@ RectTransform:
   m_Father: {fileID: 1829934746}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 284.5, y: -160}
-  m_SizeDelta: {x: 400, y: 240}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 962.9, y: 530.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &828051278
 MonoBehaviour:
@@ -1548,7 +1551,8 @@ MonoBehaviour:
   text: {fileID: 1569922998}
   doNothink: {fileID: 0}
   positionX: 170
-  discribe: Hold to penetrate the obstacle
+  discribe: Hold the left to penetrate the obstacle
+  isLastTrigger: 0
   _spriteInstruction: {fileID: 1248019267}
   _requestedInput: 1
 --- !u!114 &1248019265
@@ -2024,8 +2028,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -53}
-  m_SizeDelta: {x: 110, y: 80}
+  m_AnchoredPosition: {x: 0.000022888, y: -125}
+  m_SizeDelta: {x: 328.9, y: 164.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1400217619
 MonoBehaviour:
@@ -2122,8 +2126,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.9, y: 3.3}
-  m_SizeDelta: {x: 205.3, y: 124.5}
+  m_AnchoredPosition: {x: -4.8, y: -1.8}
+  m_SizeDelta: {x: 448.8, y: 279.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1569922998
 MonoBehaviour:
@@ -2146,18 +2150,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 25
+    m_FontSize: 55
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 5
-    m_MaxSize: 40
+    m_MaxSize: 88
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: Click on the right side to jump over the hole
 --- !u!222 &1569922999
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2477,6 +2481,7 @@ MonoBehaviour:
   doNothink: {fileID: 0}
   positionX: 400
   discribe: '...and hold the second click'
+  isLastTrigger: 0
   _spriteInstruction: {fileID: 1725407577}
   _requestedInput: 2
 --- !u!114 &1725407575
@@ -2725,11 +2730,11 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -3149,8 +3154,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 165.1, y: -96.8}
-  m_SizeDelta: {x: 331.1, y: 193.70001}
+  m_AnchoredPosition: {x: 353, y: -174}
+  m_SizeDelta: {x: 775.7, y: 392.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1969398373
 MonoBehaviour:
@@ -3171,7 +3176,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: b8eee7b99fbab384eb2391fe1444bb34, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 189bccb03611335448908c68343e3858, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3422,11 +3427,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 29
+    m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_MinSize: 6
+    m_MaxSize: 85
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
