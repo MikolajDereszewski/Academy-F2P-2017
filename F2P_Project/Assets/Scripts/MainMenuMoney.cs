@@ -11,6 +11,17 @@ public class MainMenuMoney : MonoBehaviour {
 
     void Start ()
     {
+        SetText();
+    }
+
+    public void ResetPlayerPrefs()
+    {
+        Statistics.ResetPlayerPrefs();
+        SetText();
+    }
+
+    private void SetText()
+    {
         Statistics.LoadValuesFromPrefs();
         _text.text = "Money: " + Statistics._currentCoins.ToString();
         _textTopScore.text = "Highscore: " + Statistics._topScore.ToString();

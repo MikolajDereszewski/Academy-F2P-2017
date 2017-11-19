@@ -1438,6 +1438,7 @@ GameObject:
   - component: {fileID: 1058472974}
   - component: {fileID: 1058472973}
   - component: {fileID: 1058472975}
+  - component: {fileID: 1058472976}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1495,6 +1496,23 @@ MonoBehaviour:
   _gameOverAnimator: {fileID: 0}
   _speedUpAnimator: {fileID: 0}
   _currentActivePlatform: {fileID: 0}
+--- !u!114 &1058472976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1058472972}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64f332489b9993541bc161c7f85be5d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 0}
+  coins: {fileID: 0}
+  headImage: {fileID: 0}
+  headTarget: {fileID: 0}
+  panelPause: {fileID: 0}
+  _auraTakerMultiplier: 2
 --- !u!1 &1248019262
 GameObject:
   m_ObjectHideFlags: 0
@@ -2734,8 +2752,8 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 1
-  m_MatchWidthOrHeight: 0
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96

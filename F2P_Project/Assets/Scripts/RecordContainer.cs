@@ -69,6 +69,11 @@ namespace Records
             PlayerPrefs.Save();
         }
 
+        public static void ResetPlayerPrefs()
+        {
+            PlayerPrefs.DeleteAll();
+        }
+
         public static float GetNutThreshold(int lvl)
         {
             return lvl + 3;

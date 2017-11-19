@@ -88,7 +88,7 @@ public class Player : MonoBehaviour
     private void ScalePlayerMask(bool opening)
     {
         _isMaskOpened = opening;
-        if (!opening || InterfaceRun.Mana < 25f)
+        if (!opening || InterfaceRun.Mana < 5f)
             _maskClicked = false;
         if (InterfaceRun.ThisScript != null)
             InterfaceRun.AuraKeyDetection(opening);

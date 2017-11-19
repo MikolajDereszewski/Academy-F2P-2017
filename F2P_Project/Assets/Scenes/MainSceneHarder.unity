@@ -2368,7 +2368,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Scenes/MainScene
+          m_StringArgument: Scenes/MainSceneHarder
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -2847,11 +2847,11 @@ MonoBehaviour:
   _gameSpeed: 10
   _levels:
   - _name: Beginner
-    _timeNeeded: 15
-    _treesEnabled: 0
-    _doubleTreesEnabled: 0
-    _gapSize: {x: 3, y: 5}
-    _platformSize: {x: 3, y: 8}
+    _timeNeeded: 500
+    _treesEnabled: 1
+    _doubleTreesEnabled: 1
+    _gapSize: {x: 30, y: 50}
+    _platformSize: {x: 1, y: 2}
   - _name: Easy
     _timeNeeded: 30
     _treesEnabled: 1

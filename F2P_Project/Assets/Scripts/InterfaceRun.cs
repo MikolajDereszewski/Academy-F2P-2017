@@ -9,8 +9,8 @@ public class InterfaceRun : MonoBehaviour
     public const float MAP_DISTANCE = 1000;
 
     public static InterfaceRun ThisScript { get { return _thisScript; } }
-    public static float Mana { get { return _thisScript.slider.value; } }
-    public static float ManaLaunchMinimum { get { return 5f * _thisScript._auraTakerMultiplier; } }
+    public static float Mana { get { return (_thisScript != null) ? _thisScript.slider.value : 100f; } }
+    public static float ManaLaunchMinimum { get { return 5f * ((_thisScript != null) ? _thisScript._auraTakerMultiplier : 2); } }
 
     public Slider slider;
     public Text coins;
