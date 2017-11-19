@@ -107,7 +107,8 @@ MonoBehaviour:
   _collectible:
     _type: 2
     _count: 50
-  _afterCollectPrefab: {fileID: 0}
+  _afterCollectPrefab: {fileID: 1701744504700972, guid: b974c8b41a3ceb343bfaa3b046975e9f,
+    type: 2}
 --- !u!212 &212302783484654364
 SpriteRenderer:
   m_ObjectHideFlags: 1

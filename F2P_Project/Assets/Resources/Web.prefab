@@ -95,7 +95,8 @@ MonoBehaviour:
   _collectible:
     _type: 4
     _count: 0.5
-  _afterCollectPrefab: {fileID: 0}
+  _afterCollectPrefab: {fileID: 1019982577116176, guid: 156acc23ca6a3294cbbbea192c595a7d,
+    type: 2}
 --- !u!114 &114529559179097312
 MonoBehaviour:
   m_ObjectHideFlags: 1

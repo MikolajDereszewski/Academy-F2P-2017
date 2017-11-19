@@ -50,6 +50,7 @@ public class Player : MonoBehaviour
     private float _spriteMaskSize;
 
     private bool _isMaskOpened = false;
+    private bool _maskClicked = false;
 
     private Coroutine _shootingCoroutine = null;
 
@@ -63,9 +64,12 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        ScalePlayerMask((InputManager.GetRequestedPlayerInput(TapType.Left, true)));
-        if ((InputManager.GetRequestedPlayerInput(TapType.Left, false)))
+        ScalePlayerMask((InputManager.GetRequestedPlayerInput(TapType.Left, true)) && _maskClicked);
+        if (InputManager.GetRequestedPlayerInput(TapType.Left, false))
+        {
             _auraAnimator.SetTrigger("AuraPopup");
+            _maskClicked = true;
+        }
         if (InputManager.GetRequestedPlayerInput(TapType.Right))
             Jump();
     }
@@ -84,6 +88,8 @@ public class Player : MonoBehaviour
     private void ScalePlayerMask(bool opening)
     {
         _isMaskOpened = opening;
+        if (!opening || InterfaceRun.Mana < 25f)
+            _maskClicked = false;
         if (InterfaceRun.ThisScript != null)
             InterfaceRun.AuraKeyDetection(opening);
         Vector3 scaling = new Vector3(1, 1, 0) * ((opening) ? 1f : -1f) * _maskScalingSpeed;
@@ -108,7 +114,7 @@ public class Player : MonoBehaviour
                 break;
             case PlayerState.Jumping:
             case PlayerState.Falling:
-                if (_shootingCoroutine == null)
+                if (_shootingCoroutine == null && InterfaceRun.Mana >= InterfaceRun.ManaLaunchMinimum)
                     _shootingCoroutine = StartCoroutine(ShootingHook());
                 break;
         }

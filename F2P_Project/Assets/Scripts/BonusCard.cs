@@ -31,7 +31,7 @@ public class BonusCard : MonoBehaviour
 
     private BonusType GetRandomBonusType()
     {
-        int rand = (Random.Range(0, 100));
+        int rand = Random.Range(0, 100);
         if (rand <= 60)
             return BonusType.Coins;
         else if (rand <= 85)
