@@ -14,20 +14,6 @@ public class MainMenu : MonoBehaviour
 
     private bool playSound;
 
-    void Start()
-    {
-        if (PlayerPrefs.HasKey(BasePrefName.BEST_SCORE))
-            textScore.text = "Best score: " + PlayerPrefs.GetInt(BasePrefName.BEST_SCORE);
-        else
-            textScore.text = "Best score: " + PlayerPrefs.GetInt(BasePrefName.BEST_SCORE);
-
-        if (PlayerPrefs.HasKey(BasePrefName.ALL_SCORE))
-            textMoney.text = "Money: " + PlayerPrefs.GetInt(BasePrefName.ALL_SCORE);
-        else
-            textMoney.text = "Money: " + PlayerPrefs.GetInt(BasePrefName.ALL_SCORE);
-
-    }
-
     public void OpenScene(string name)
     {
         SceneManager.LoadScene(name);

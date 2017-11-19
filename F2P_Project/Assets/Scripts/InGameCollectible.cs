@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Records;
 
 public class InGameCollectible : MonoBehaviour
 {
@@ -16,20 +17,53 @@ public class InGameCollectible : MonoBehaviour
         _renderer.sprite = _sprite;
     }
 
+    private void AddToTotalScore()
+    {
+        switch(_collectible.Type)
+        {
+            case CollectibleType.Coin:
+                RecordContainer.cCoins += (int)_collectible.Count;
+                break;
+            case CollectibleType.Nut:
+                RecordContainer.cNuts += (int)_collectible.Count;
+                break;
+            case CollectibleType.Mana:
+                RecordContainer.cEnergy += (int)_collectible.Count;
+                break;
+            case CollectibleType.Rocket:
+                RecordContainer.cRockets++;
+                break;
+            case CollectibleType.Web:
+                RecordContainer.cWebs++;
+                break;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "PLAYER")
         {
             if (collision.GetComponent<Player>().HasMaskOpened)
                 return;
-            if (_collectible.Type == CollectibleType.Mana)
-                InterfaceRun.CollectMana(_collectible.Count);
-            else
-                CollectiblesCounter.AddCollectible(_collectible);
+            switch(_collectible.Type)
+            {
+                case CollectibleType.Coin:
+                case CollectibleType.Nut:
+                    CollectiblesCounter.AddCollectible(_collectible);
+                    break;
+                case CollectibleType.Mana:
+                    InterfaceRun.CollectMana((int)_collectible.Count);
+                    break;
+                case CollectibleType.Rocket:
+                case CollectibleType.Web:
+                    GameBehaviour.GameBehaviourScript.StartCoroutine(GameBehaviour.ChangeSpeedMultiplier(_collectible.Count, 10f));
+                    break;
+            }
 
             if(_afterCollectPrefab != null)
                 Instantiate(_afterCollectPrefab, transform.position, Quaternion.identity);
 
+            AddToTotalScore();
             Destroy(gameObject);
         }
     }

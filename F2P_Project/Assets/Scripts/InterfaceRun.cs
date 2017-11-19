@@ -12,7 +12,7 @@ public class InterfaceRun : MonoBehaviour
 
     public Slider slider;
     public Text coins;
-    public Image headImage;
+    public Image headImage, headTarget;
     public Image panelPause;
 
     private static bool isAura = false;
@@ -26,6 +26,8 @@ public class InterfaceRun : MonoBehaviour
 
     private static InterfaceRun _thisScript;
 
+    private float distanceHead;
+
     void Start()
     {
         _thisScript = this;
@@ -34,14 +36,16 @@ public class InterfaceRun : MonoBehaviour
         slider.maxValue = 100;
         slider.wholeNumbers = false;
         slider.value = 100;
-        
+
+        distanceHead = (headTarget.transform.position.x - headImage.transform.position.x) / 6f;
+
         screenWidth = Screen.width;
         converter = screenWidth / MAP_DISTANCE;
     }
 
     void Update()
     {
-        headImage.transform.position += new Vector3((145f / GameBehaviour.GetCurrentLevelInfo().Time) * Time.deltaTime, 0);
+        headImage.transform.position += new Vector3((distanceHead / GameBehaviour.GetCurrentLevelInfo().Time) * Time.deltaTime, 0);
 
         if (!isAura)
         {
@@ -76,6 +80,11 @@ public class InterfaceRun : MonoBehaviour
     public static void CollectMana(int value)
     {
         _thisScript.slider.value += value;
+    }
+
+    public static void OnPlayerDied()
+    {
+        _thisScript.enabled = false;
     }
 
     public void HidePanelPause()

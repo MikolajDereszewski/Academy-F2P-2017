@@ -133,9 +133,13 @@ MonoBehaviour:
   _obstaclePrefabs:
   - {fileID: 114839084388433616, guid: d508ac15d453451439a4c63f4e289892, type: 2}
   - {fileID: 114614723755053602, guid: 1d4365dc548a3c244b7aa0b18bf725e5, type: 2}
+  - {fileID: 114073292919026500, guid: d8b38298b723ee4478489d7e5330fbc5, type: 2}
   _collectiblesPrefabs:
   - {fileID: 114220632966193684, guid: b9c92a2aac2c5364ca30d9858633532a, type: 2}
   - {fileID: 114578249090112902, guid: 83dca51f4a9ee7c46930da9dae3dab58, type: 2}
+  _specialPrefabs:
+  - {fileID: 114529559179097312, guid: 4b4d500bc63fb5446a53e537cd490a6f, type: 2}
+  - {fileID: 114722949317690052, guid: f843353e618148e4da9a144ad3c462b6, type: 2}
   _renderer1: {fileID: 212132133762593766}
   _renderer2: {fileID: 212733249310415608}
 --- !u!114 &114607756981480872

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using GameClasses;
 using System;
+using Records;
 
 public class GameManager : MonoBehaviour {
 
@@ -10,12 +11,24 @@ public class GameManager : MonoBehaviour {
     private Platform _platformPrefab = null;
     [SerializeField]
     private GameObject _treePrefab = null;
+    [SerializeField]
+    private Player _player;
+    [SerializeField]
+    private Animator _gameOverAnimator;
+
+    [SerializeField]
+    private Animator _speedUpAnimator;
 
     private GameState _gameState = GameState.BeforeStart;
     
     [SerializeField]
     private Platform _currentActivePlatform;
     private float _currentActiveGap;
+
+    private void Awake()
+    {
+        DifficultyManager.SetStartTime(Time.time);
+    }
 
     private void Start()
     {
@@ -27,14 +40,20 @@ public class GameManager : MonoBehaviour {
         if (Camera.main.WorldToViewportPoint(GetCurrentPlatformEndPoint()).x < 1)
             _currentActivePlatform = CreatePlatform();
         if (DifficultyManager.GetLevelTime(Time.time) >= GameBehaviour.GetCurrentLevelInfo().Time && IncreaseLevel != null)
+        {
+            _speedUpAnimator.Play("InGameTextSlide");
             IncreaseLevel(Time.time);
+        } 
     }
 
     private void InitializeGame()
     {
+        _player.PlayerDied += OnPlayerDied;
+        _player.PlayerDied += GameBehaviour.OnPlayerDied;
+        _player.PlayerDied += InterfaceRun.OnPlayerDied;
+        _player.PlayerDied += RecordContainer.OnPlayerDied;
         _currentActivePlatform.Initialize(_currentActivePlatform.transform.position, false);
         IncreaseLevel += DifficultyManager.OnIncreaseLevel;
-        DifficultyManager.SetStartTime(Time.time);
         _gameState = GameState.Running;
     }
 
@@ -76,5 +95,15 @@ public class GameManager : MonoBehaviour {
     private float GetPlatformSpawnY()
     {
         return (Camera.main.ViewportToWorldPoint(Vector3.zero).y + UnityEngine.Random.Range(0.5f, 3f));
+    }
+
+    public void LoadScene(string name)
+    {
+        Application.LoadLevel(name);
+    }
+
+    private void OnPlayerDied()
+    {
+        _gameOverAnimator.Play("GameOverSliding");
     }
 }

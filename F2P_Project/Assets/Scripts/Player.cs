@@ -154,8 +154,9 @@ public class Player : MonoBehaviour
     private void KillPlayer()
     {
         Debug.Log("PLAYER IS DEAD");
-        Time.timeScale = 0f;
         _playerState = PlayerState.Dead;
+        _playerAnimator.speed = 0f;
+        _playerSpiritAnimator.speed = 0f;
         if (PlayerDied != null)
             PlayerDied();
     }
