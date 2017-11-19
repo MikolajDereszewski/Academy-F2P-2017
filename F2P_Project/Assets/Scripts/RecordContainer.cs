@@ -17,6 +17,8 @@ namespace Records
         public static int _totalWebs;
         public static int _topScore;
         public static bool _soundEnabled;
+        public static int _nutsLevel;
+
         public static int _slot_0;
         public static int _slot_1;
         public static int _slot_2;
@@ -35,6 +37,7 @@ namespace Records
             _totalRockets = PlayerPrefs.GetInt("TOTAL_ROCKETS");
             _totalWebs = PlayerPrefs.GetInt("TOTAL_WEBS");
             _topScore = PlayerPrefs.GetInt("HIGHSCORE");
+            _nutsLevel = PlayerPrefs.GetInt("NUTS_LEVEL");
             _soundEnabled = PlayerPrefs.HasKey("SOUND") ? (PlayerPrefs.GetInt("SOUND") == 0 ? false : true) : true;
             _slot_0 = PlayerPrefs.GetInt("SLOT_0");
             _slot_1 = PlayerPrefs.GetInt("SLOT_1");
@@ -55,6 +58,7 @@ namespace Records
             PlayerPrefs.SetInt("TOTAL_ROCKETS", _totalRockets);
             PlayerPrefs.SetInt("TOTAL_WEBS", _totalWebs);
             PlayerPrefs.SetInt("HIGHSCORE", _topScore);
+            PlayerPrefs.SetInt("NUTS_LEVEL", _nutsLevel);
             PlayerPrefs.SetInt("SOUND", _soundEnabled ? 1 : 0);
             PlayerPrefs.SetInt("SLOT_0", _slot_0);
             PlayerPrefs.SetInt("SLOT_1", _slot_1);
@@ -63,6 +67,20 @@ namespace Records
             PlayerPrefs.SetInt("SLOT_4", _slot_2);
             PlayerPrefs.SetInt("SLOT_5", _slot_2);
             PlayerPrefs.Save();
+        }
+
+        public static float GetNutThreshold(int lvl)
+        {
+            return lvl + 3;
+        }
+
+        public static float TotalNutsNeeded(int lvl)
+        {
+            if (lvl < 0)
+                return 0;
+            else if (lvl == 0)
+                return 3;
+            else return (lvl + 3) + TotalNutsNeeded(lvl - 1);
         }
     }
 
@@ -94,6 +112,9 @@ namespace Records
         [SerializeField]
         private Text _websText = null;
 
+        [SerializeField]
+        private Slider _nutsSlider = null;
+
         public static RecordContainer _thisScript;
 
         private void Awake()
@@ -107,7 +128,11 @@ namespace Records
             _thisScript._scoreText.text += cCoins.ToString();
             _thisScript._coinGoldenText.text = cGold.ToString();
             _thisScript._coinSilverText.text = cSilver.ToString();
-            _thisScript._nutsSliderText.text = (cNuts + Statistics._totalNuts).ToString() + " / 10";
+            int val = (cNuts + Statistics._totalNuts);
+            float trsh = (Statistics.GetNutThreshold(Statistics._nutsLevel));
+            float ttl = Statistics.TotalNutsNeeded(Statistics._nutsLevel-1);
+            _thisScript._nutsSliderText.text = (val - ttl).ToString() + " / " + trsh.ToString();
+            _thisScript._nutsSlider.value = (val - ttl) / trsh;
             _thisScript._nutsText.text = cNuts.ToString();
             _thisScript._energyText.text = cEnergy.ToString();
             _thisScript._rocketsText.text = cRockets.ToString();

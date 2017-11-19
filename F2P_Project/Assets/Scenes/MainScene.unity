@@ -2952,8 +2952,6 @@ MonoBehaviour:
   _energyText: {fileID: 356044533}
   _rocketsText: {fileID: 1615527894}
   _websText: {fileID: 612333662}
-  _nutsSlider: {fileID: 255534719}
-  _nutCardAnimator: {fileID: 1661011224}
 --- !u!1 &907523054
 GameObject:
   m_ObjectHideFlags: 0
