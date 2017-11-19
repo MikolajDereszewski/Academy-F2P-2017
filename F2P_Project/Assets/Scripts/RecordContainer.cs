@@ -30,7 +30,7 @@ namespace Records
             _totalRockets = PlayerPrefs.GetInt("TOTAL_ROCKETS");
             _totalWebs = PlayerPrefs.GetInt("TOTAL_WEBS");
             _topScore = PlayerPrefs.GetInt("HIGHSCORE");
-            _soundEnabled = PlayerPrefs.GetInt("SOUND") == 0 ? false : true;
+            _soundEnabled = (PlayerPrefs.HasKey("SOUND")) ? (PlayerPrefs.GetInt("SOUND") == 1) : true;
             _nutsLevel = PlayerPrefs.GetInt("NUTS_LEVEL");
         }
 
