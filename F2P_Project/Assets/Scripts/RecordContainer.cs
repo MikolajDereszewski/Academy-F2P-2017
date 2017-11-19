@@ -14,7 +14,7 @@ namespace Records
         public static int _totalRockets;
         public static int _totalWebs;
         public static int _topScore;
-        public static bool _soundEnabled;
+        public static int _soundEnabled;
 
         public static void LoadValuesFromPrefs()
         {
@@ -25,7 +25,7 @@ namespace Records
             _totalRockets = PlayerPrefs.GetInt("TOTAL_ROCKETS");
             _totalWebs = PlayerPrefs.GetInt("TOTAL_WEBS");
             _topScore = PlayerPrefs.GetInt("HIGHSCORE");
-            _soundEnabled = (PlayerPrefs.GetInt("SOUND_ENABLED") == 1 ? true : false);
+            _soundEnabled = PlayerPrefs.GetInt("SOUND");
         }
 
         public static void SaveValuesToPrefs()
@@ -37,7 +37,7 @@ namespace Records
             PlayerPrefs.SetInt("TOTAL_ROCKETS", _totalRockets);
             PlayerPrefs.SetInt("TOTAL_WEBS", _totalWebs);
             PlayerPrefs.SetInt("HIGHSCORE", _topScore);
-            PlayerPrefs.SetInt("SOUND_ENABLED", (_soundEnabled ? 1 : 0));
+            PlayerPrefs.SetInt("SOUND", _soundEnabled);
             PlayerPrefs.Save();
         }
     }
