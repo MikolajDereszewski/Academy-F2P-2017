@@ -434,7 +434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c815453d40df3b4487b9ac8f38f2b38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bestScore: {fileID: 0}
+  bestScore: {fileID: 1764981616}
   listImage:
   - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 21300000, guid: 05ba09afe6c38d44c97559d612adcd48, type: 3}
