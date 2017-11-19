@@ -28,7 +28,7 @@ public class InGameCollectible : MonoBehaviour
                 RecordContainer.cNuts += (int)_collectible.Count;
                 break;
             case CollectibleType.Mana:
-                RecordContainer.cEnergy += (int)_collectible.Count;
+                RecordContainer.cEnergy ++;
                 break;
             case CollectibleType.Rocket:
                 RecordContainer.cRockets++;

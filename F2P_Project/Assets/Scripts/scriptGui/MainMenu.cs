@@ -18,7 +18,7 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         Statistics.LoadValuesFromPrefs();
-        if (Statistics._soundEnabled == 0)
+        if (!Statistics._soundEnabled)
         {
             playSound = false;
             buttonSound.image.sprite = soundUnactive;
@@ -30,7 +30,7 @@ public class MainMenu : MonoBehaviour
             playSound = true;
             buttonSound.image.sprite = soundActive;
             AudioListener.volume = 1;
-            Statistics._soundEnabled = 1;
+            Statistics._soundEnabled = true;
         }
     }
 
@@ -54,7 +54,7 @@ public class MainMenu : MonoBehaviour
             playSound = false;
             AudioListener.pause = true;
             AudioListener.volume = 0;
-            Statistics._soundEnabled = 0;
+            Statistics._soundEnabled = false;
             Statistics.SaveValuesToPrefs();
         }
         else
@@ -63,7 +63,7 @@ public class MainMenu : MonoBehaviour
             playSound = true;
             AudioListener.pause = false;
             AudioListener.volume = 1;
-            Statistics._soundEnabled = 1;
+            Statistics._soundEnabled =true;
             Statistics.SaveValuesToPrefs();
         }
     }
