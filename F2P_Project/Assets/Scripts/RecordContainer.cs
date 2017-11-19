@@ -17,6 +17,12 @@ namespace Records
         public static int _totalWebs;
         public static int _topScore;
         public static bool _soundEnabled;
+        public static int _slot_0;
+        public static int _slot_1;
+        public static int _slot_2;
+        public static int _slot_3;
+        public static int _slot_4;
+        public static int _slot_5;
 
         public static void LoadValuesFromPrefs()
         {
@@ -30,6 +36,12 @@ namespace Records
             _totalWebs = PlayerPrefs.GetInt("TOTAL_WEBS");
             _topScore = PlayerPrefs.GetInt("HIGHSCORE");
             _soundEnabled = PlayerPrefs.GetInt("SOUND") == 0 ? false : true;
+            _slot_0 = PlayerPrefs.GetInt("SLOT_0");
+            _slot_1 = PlayerPrefs.GetInt("SLOT_1");
+            _slot_2 = PlayerPrefs.GetInt("SLOT_2");
+            _slot_2 = PlayerPrefs.GetInt("SLOT_3");
+            _slot_2 = PlayerPrefs.GetInt("SLOT_4");
+            _slot_2 = PlayerPrefs.GetInt("SLOT_5");
         }
 
         public static void SaveValuesToPrefs()
@@ -44,6 +56,12 @@ namespace Records
             PlayerPrefs.SetInt("TOTAL_WEBS", _totalWebs);
             PlayerPrefs.SetInt("HIGHSCORE", _topScore);
             PlayerPrefs.SetInt("SOUND", _soundEnabled ? 1 : 0);
+            PlayerPrefs.SetInt("SLOT_0", _slot_0);
+            PlayerPrefs.SetInt("SLOT_1", _slot_1);
+            PlayerPrefs.SetInt("SLOT_2", _slot_2);
+            PlayerPrefs.SetInt("SLOT_3", _slot_2);
+            PlayerPrefs.SetInt("SLOT_4", _slot_2);
+            PlayerPrefs.SetInt("SLOT_5", _slot_2);
             PlayerPrefs.Save();
         }
     }
