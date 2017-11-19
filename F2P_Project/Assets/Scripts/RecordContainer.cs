@@ -35,7 +35,7 @@ namespace Records
             _totalRockets = PlayerPrefs.GetInt("TOTAL_ROCKETS");
             _totalWebs = PlayerPrefs.GetInt("TOTAL_WEBS");
             _topScore = PlayerPrefs.GetInt("HIGHSCORE");
-            _soundEnabled = PlayerPrefs.GetInt("SOUND") == 0 ? false : true;
+            _soundEnabled = PlayerPrefs.HasKey("SOUND") ? (PlayerPrefs.GetInt("SOUND") == 0 ? false : true) : true;
             _slot_0 = PlayerPrefs.GetInt("SLOT_0");
             _slot_1 = PlayerPrefs.GetInt("SLOT_1");
             _slot_2 = PlayerPrefs.GetInt("SLOT_2");
