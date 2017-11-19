@@ -2593,7 +2593,7 @@ MonoBehaviour:
   _coinGoldenText: {fileID: 1297908656}
   _coinSilverText: {fileID: 616153721}
   _nutsSliderText: {fileID: 1136860079}
-  _nutsText: {fileID: 356044533}
+  _nutsText: {fileID: 2105274788}
   _energyText: {fileID: 356044533}
   _rocketsText: {fileID: 1615527894}
   _websText: {fileID: 612333662}
