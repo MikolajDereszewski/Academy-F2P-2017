@@ -119,6 +119,8 @@ namespace Records
 
         [SerializeField]
         private Slider _nutsSlider = null;
+        [SerializeField]
+        private Animator _nutsAnimator = null;
 
         public static RecordContainer _thisScript;
 
@@ -138,6 +140,11 @@ namespace Records
             float ttl = Statistics.TotalNutsNeeded(Statistics._nutsLevel-1);
             _thisScript._nutsSliderText.text = (val - ttl).ToString() + " / " + trsh.ToString();
             _thisScript._nutsSlider.value = (val - ttl) / trsh;
+            if ((val - ttl) >= trsh)
+            {
+                _thisScript._nutsAnimator.Play("GameOverSliding");
+                Statistics._nutsLevel++;
+            }
             _thisScript._nutsText.text = cNuts.ToString();
             _thisScript._energyText.text = cEnergy.ToString();
             _thisScript._rocketsText.text = cRockets.ToString();

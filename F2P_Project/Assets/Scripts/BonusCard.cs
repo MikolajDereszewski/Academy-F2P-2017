@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
@@ -26,7 +25,12 @@ public class BonusCard : MonoBehaviour
 
     public BonusProperties GetRandomBonus()
     {
-        return _bonusList.FirstOrDefault(_ => _.type == GetRandomBonusType());
+        BonusProperties newProp = null;
+        do
+        {
+            newProp = _bonusList.FirstOrDefault(_ => _.type == GetRandomBonusType());
+        } while (newProp == null);
+        return newProp;
     }
 
     private BonusType GetRandomBonusType()

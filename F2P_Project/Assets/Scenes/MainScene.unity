@@ -2953,6 +2953,7 @@ MonoBehaviour:
   _rocketsText: {fileID: 1615527894}
   _websText: {fileID: 612333662}
   _nutsSlider: {fileID: 255534719}
+  _nutsAnimator: {fileID: 1661011224}
 --- !u!1 &907523054
 GameObject:
   m_ObjectHideFlags: 0
